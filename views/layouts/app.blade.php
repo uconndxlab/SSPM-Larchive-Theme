@@ -66,13 +66,32 @@
     {{-- SSPM-style header/navigation (theme-provided) --}}
     <header class="bg-white">
         <div class="d-flex justify-content-between flex-wrap align-items-center py-2 container">
+            @php
+                $themeInfo = \App\Support\Theme::get(\App\Support\Theme::active());
+                $themeFolder = $themeInfo['folder'] ?? \App\Support\Theme::active();
+                $logoCandidates = [
+                    public_path("themes/{$themeFolder}/logo.png"),
+                    public_path("themes/{$themeFolder}/logo.svg"),
+                    public_path("themes/{$themeFolder}/assets/logo.png"),
+                    public_path("themes/{$themeFolder}/assets/logo.svg"),
+                ];
+                $logoPath = null;
+                foreach ($logoCandidates as $c) {
+                    if (file_exists($c)) { $logoPath = str_replace(public_path() . '/', '', $c); break; }
+                }
+            @endphp
+
             <a class="d-flex align-items-end text-decoration-none pointer" href="{{ route('home') }}">
-                <h1 class="grotesk-mono-bold letters-tight head-h1 fs-head text-grey">SING<span style="margin-left: 4px">SING</span></h1>
-                <span class="grotesk-mono-bold letters-tight head-prison fs-md text-grey ms-1">
-                    <span style="letter-spacing: 2px">PRISON</span>
-                    <br />
-                    <span style="letter-spacing: 1px">MUSEUM</span>
-                </span>
+                @if($logoPath)
+                    <img src="{{ asset($logoPath) }}" alt="{{ config('app.name') }}" style="height:56px; object-fit:contain;" />
+                @else
+                    <h1 class="grotesk-mono-bold letters-tight head-h1 fs-head text-grey">SING<span style="margin-left: 4px">SING</span></h1>
+                    <span class="grotesk-mono-bold letters-tight head-prison fs-md text-grey ms-1">
+                        <span style="letter-spacing: 2px">PRISON</span>
+                        <br />
+                        <span style="letter-spacing: 1px">MUSEUM</span>
+                    </span>
+                @endif
             </a>
 
             <div class="admin-info position-relative d-flex align-items-center gap-2">
@@ -87,7 +106,7 @@
                 @endauth
 
                 {{-- theme mobile menu / admin menu --- keep markup so JS in the theme can operate unchanged --}}
-                <div class="hamburg-popup position-absolute bg-off-white" style="display:none;">
+                <div class="hamburg-popup position-absolute bg-off-white">
                     <div class="list-unstyled hamburg-menu mb-0 w-100">
                         <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('home') }}">Home</a>
                         <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="#">Exhibitions?</a>

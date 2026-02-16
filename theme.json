@@ -4,6 +4,6 @@
   "description": "SSPM front-end for Larchive — provides views and assets kept outside core.",
   "version": "0.1.0",
   "author": "SSPM",
-  "views": "front-ends",
+  "views": "views",
   "assets": "."
 }
