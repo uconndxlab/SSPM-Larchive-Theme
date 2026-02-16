@@ -7,8 +7,8 @@
 
     <title>{{ config('app.name', 'Larchive') }}</title>
 
-    <!-- Bootstrap (CDN fallback kept for reliability) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap (local v5.3.8 from theme) -->
+    <link rel="stylesheet" href="{{ \App\Support\Theme::asset('bootstrap/css/bootstrap.min.css') }}">
 
     <!-- Theme CSS (provided by theme package) -->
     <link rel="stylesheet" href="{{ \App\Support\Theme::asset('css/extended-bootstrap.css') }}">
@@ -186,7 +186,7 @@
     </footer>
 
     <!-- Core scripts (keep HTMX/Sortable used by app) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ \App\Support\Theme::asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <script>
