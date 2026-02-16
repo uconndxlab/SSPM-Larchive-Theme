@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Archive</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/extended-bootstrap.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-white ">
+    <div class="d-flex justify-content-between flex-wrap align-items-center py-2 container">
+      <a class="d-flex align-items-end text-decoration-none pointer" href="index.html">
+        <h1 class="grotesk-mono-bold letters-tight head-h1 fs-head text-grey">SING<span style="margin-left: 4px">SING</span></h1>
+        <span class="grotesk-mono-bold letters-tight head-prison fs-md text-grey ms-1">
+          <span style="letter-spacing: 2px">PRISON</span>
+          <br />
+          <span style="letter-spacing: 1px">MUSEUM</span>
+        </span>
+      </a>
+      <div class="admin-info position-relative d-flex align-items-center gap-2">
+        <span class="admin-name ms-0 ms-sm-auto grotesk-mono-reg">Hello, John</span>
+        <span class="admin-title author ms-0 me-auto ms-sm-auto me-sm-auto grotesk-mono-bold text-white rounded-1 py-1 px-2">Author</span>
+        <div class="rounded-2 hamburg-wrap bg-off-white d-flex justify-content-center align-items-center">
+          <i class="bi bi-list text-grey fs-1"></i>
+        </div>
+        <div class="hamburg-popup position-absolute bg-off-white">
+          <div class="list-unstyled hamburg-menu mb-0 w-100">
+              <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none text-grey   fs-md-sm text-start px-4 py-2  pointer" href="index.html">
+                Home
+              </a>
+              <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none text-grey   fs-md-sm text-start px-4 py-2  pointer" href="index.html">
+                Exhibitions?
+              </a>
+                   <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none text-grey   fs-md-sm text-start px-4 py-2  pointer" href="sign-in.html">
+                Admin Login
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <section class="container draft">
+    <div class="row">
+      <div class="selections admin mt-5">
+        <span class="archive grotesk-mono-bold selected">Archive</span>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <a class="text-start text-black text-decoration-none" href="">
+          <i class="bi bi-arrow-left-short fs-md draft-back-arrow"></i>
+          <span class="letters-spaced fs-sm grotesk-mono-reg">BACK TO FULL ARCHIVE</span>
+        </a>
+      </div>
+      <div class="row mt-2">
+        <h2 class="fs-lg grotesk-mono-bold text-start draft-title position-relative">Lorem Ipsum</h2>
+      </div>
+      <div class="row justify-content-between mt-3">
+        <div class="col-12 col-lg-5">
+          <span class="text-start fs-md grotesk-mono-bold">Details</span>
+
+          <!-- Details form -->
+          <form class="details-form mt-4">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Placeholder">
+
+            <label for="slug">Slug</label>
+            <input type="text" id="slug" placeholder="Placeholder">
+
+            <!-- Collection dropdown input -->
+            <div class="draft-dropdown-wrap" id="collection">
+              <span class="dropdown-title fs-sm">Collection</span>
+              <div class="dropdown-placeholder d-flex justify-content-between">
+                <span>Placeholder</span>
+
+                <!-- Arrow -->
+                <svg width="18" height="12" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z" fill="#ADB5BD"/>
+                </svg>
+              </div>
+              <div class="draft-dropdown">
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="collection-1" value="collection-1" name="collection">
+                  <label for="collection-1" class="dropdown-item-label">Collection 1</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="collection-2" value="collection-2" name="collection">
+                  <label for="collection-2" class="dropdown-item-label">Collection 2</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="collection-3" value="collection-3" name="collection">
+                  <label for="collection-3" class="dropdown-item-label">Collection 3</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="collection-4" value="collection-4" name="collection">
+                  <label for="collection-4" class="dropdown-item-label">Collection 4</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item type dropdown input -->
+            <div class="draft-dropdown-wrap" id="item-type">
+              <span class="dropdown-title fs-sm">Item Type</span>
+              <div class="dropdown-placeholder d-flex justify-content-between">
+                <span>Placeholder</span>
+
+                <!-- Arrow -->
+                <svg width="18" height="12" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z" fill="#ADB5BD"/>
+                </svg>
+              </div>
+
+              <div class="draft-dropdown">
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="type-1" value="type-1" name="item-type">
+                  <label for="type-1" class="dropdown-item-label">Type 1</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="type-2" value="type-2" name="item-type">
+                  <label for="type-2" class="dropdown-item-label">Type 2</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="type-3" value="type-3" name="item-type">
+                  <label for="type-3" class="dropdown-item-label">Type 3</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="type-4" value="type-4" name="item-type">
+                  <label for="type-4" class="dropdown-item-label">Type 4</label>
+                </div>
+              </div>
+            </div>
+
+
+
+            <label for="summary">Summary</label>
+            <textarea
+              rows="5"
+              cols="50"
+              name="summary"
+              id="summary"
+              placeholder="Write a description"
+              class="mb-3"
+            ></textarea>
+
+            <!-- Language dropdown input -->
+            <div class="draft-dropdown-wrap" id="language">
+              <span class="dropdown-title fs-sm">Language</span>
+              <div class="dropdown-placeholder d-flex justify-content-between">
+                <span>Placeholder</span>
+                <svg width="18" height="12" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z" fill="#ADB5BD"/>
+                </svg>
+              </div>
+              <div class="draft-dropdown">
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="language-1" value="language-1" name="language">
+                  <label for="language-1" class="dropdown-item-label">Language 1</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="language-2" value="language-2" name="language">
+                  <label for="language-2" class="dropdown-item-label">Language 2</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="language-3" value="language-3" name="language">
+                  <label for="language-3" class="dropdown-item-label">Language 3</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="language-4" value="language-4" name="language">
+                  <label for="language-4" class="dropdown-item-label">Language 4</label>
+                </div>
+              </div>
+            </div>
+
+
+            <span class="grotesk-reg">Interview</span>
+            <!-- Interview file drop -->
+            <div class="file-drop interview d-flex flex-column gap-2 justify-content-center align-items-center p-5 position-relative mb-3" id="drop-zone-interview">
+              <!-- Upload icon -->
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.9204 38.6796H11.0803C5.20041 38.2596 2.56055 33.7397 2.56055 29.7197C2.56055 25.6997 5.20044 21.1598 10.9804 20.7598C11.8004 20.6798 12.5203 21.3198 12.5803 22.1598C12.6403 22.9798 12.0204 23.6998 11.1804 23.7598C7.30049 24.0398 5.56051 26.9597 5.56051 29.7397C5.56051 32.5197 7.30049 35.4396 11.1804 35.7196H14.9204C15.7404 35.7196 16.4204 36.3996 16.4204 37.2196C16.4204 38.0396 15.7404 38.6796 14.9204 38.6796Z" fill="#292D32"/>
+                <path d="M33.3395 38.6795C33.2995 38.6795 33.2795 38.6795 33.2395 38.6795C32.4195 38.6795 31.6596 37.9995 31.6596 37.1795C31.6596 36.3195 32.2996 35.6795 33.1396 35.6795C35.5995 35.6795 37.7995 34.8195 39.5195 33.2795C42.6395 30.5596 42.8394 26.6396 41.9994 23.8797C41.1595 21.1397 38.8195 17.9997 34.7395 17.4997C34.0795 17.4197 33.5595 16.9197 33.4395 16.2597C32.6395 11.4598 30.0596 8.13983 26.1396 6.93985C22.0997 5.67986 17.3797 6.91984 14.4397 9.99981C11.5797 12.9798 10.9198 17.1597 12.5797 21.7597C12.8597 22.5397 12.4598 23.3996 11.6798 23.6796C10.8999 23.9596 10.0398 23.5597 9.75983 22.7797C7.73985 17.1397 8.65986 11.7398 12.2798 7.93983C15.9798 4.05988 21.9197 2.51988 27.0196 4.07986C31.6996 5.51985 34.9995 9.3798 36.1995 14.7397C40.2794 15.6597 43.5594 18.7597 44.8594 23.0397C46.2794 27.6996 44.9994 32.4996 41.4995 35.5395C39.2795 37.5395 36.3795 38.6795 33.3395 38.6795Z" fill="#292D32"/>
+                <path d="M23.9999 44.5596C19.9799 44.5596 16.22 42.4196 14.16 38.9596C13.94 38.6196 13.72 38.2196 13.54 37.7796C12.86 36.3596 12.5 34.7397 12.5 33.0597C12.5 26.7198 17.6599 21.5598 23.9999 21.5598C30.3398 21.5598 35.4997 26.7198 35.4997 33.0597C35.4997 34.7597 35.1398 36.3596 34.4198 37.8396C34.2598 38.2196 34.0398 38.6196 33.7998 38.9996C31.7798 42.4196 28.0198 44.5596 23.9999 44.5596ZM23.9999 24.5598C19.3199 24.5598 15.5 28.3797 15.5 33.0597C15.5 34.2997 15.76 35.4596 16.26 36.5196C16.42 36.8596 16.5599 37.1396 16.7199 37.3996C18.2399 39.9796 21.0199 41.5596 23.9798 41.5596C26.9398 41.5596 29.7198 39.9796 31.2198 37.4396C31.3998 37.1396 31.5598 36.8596 31.6798 36.5796C32.2198 35.4796 32.4798 34.3197 32.4798 33.0797C32.4998 28.3797 28.6798 24.5598 23.9999 24.5598Z" fill="#292D32"/>
+                <path d="M22.8598 36.5395C22.4798 36.5395 22.0998 36.3995 21.7998 36.0995L19.8198 34.1195C19.2398 33.5395 19.2398 32.5795 19.8198 31.9995C20.3998 31.4195 21.3597 31.4195 21.9397 31.9995L22.8998 32.9595L26.0997 29.9996C26.7197 29.4396 27.6597 29.4796 28.2197 30.0795C28.7797 30.6795 28.7397 31.6396 28.1397 32.1995L23.8798 36.1395C23.5798 36.3995 23.2198 36.5395 22.8598 36.5395Z" fill="#292D32"/>
+              </svg>
+              <span class="grotesk-reg w-auto text-center">Choose a file or drag and drop it here</span>
+              <span class="grotesk-reg w-auto text-center file-info">JPEG, PNG, PDG, and MP4 formats, up to 50MB</span>
+              <!-- File input -->
+              <input
+                type="file"
+                id="file-input-interview"
+                accept="image/png, image/jpeg, video/mp4"
+                class="d-none"
+              />
+              <!-- Browse button -->
+              <button class="file-input-btn interview py-1 px-8 mt-2">Browse File</button>
+            </div>
+
+            <label for="tags">Tags</label>
+            <input type="text" id="tags" placeholder="Placeholder"/>
+
+            <span class="text-start fs-md grotesk-mono-bold">Resources</span>
+            <!-- Resource file preview -->
+            <div class="resource-view bg-off-white d-flex flex-column flex-sm-row gap-2 gap-sm-4 p-4 position-relative">
+              <!-- File icon -->
+              <svg width="76" height="73" viewBox="0 0 76 73" fill="none" class="resource-svg" xmlns="http://www.w3.org/2000/svg">
+                <path d="M36.4961 3.11523L50.0039 3.11523L72.3428 25.4541L72.3428 54.2236C72.3426 62.8258 65.3688 69.7988 56.7666 69.7988H36.4961C27.8939 69.7988 20.9201 62.8258 20.9199 54.2236L20.9199 18.6914C20.9199 10.0891 27.8938 3.11523 36.4961 3.11523Z" fill="#EEF1F7" stroke="#CBD0DC" stroke-width="6.23035"/>
+                <rect y="32.2179" width="50.8704" height="29.6744" rx="10.9031" fill="#D82042"/>
+                <path d="M8.43066 54.2618L8.43066 40.0797H13.4858C14.5891 40.0797 15.5032 40.2805 16.228 40.6822C16.9528 41.0838 17.4953 41.6332 17.8554 42.3303C18.2155 43.0228 18.3955 43.803 18.3955 44.6709C18.3955 45.5434 18.2131 46.3282 17.8484 47.0253C17.4883 47.7178 16.9436 48.2672 16.2142 48.6734C15.4894 49.0751 14.5776 49.2759 13.4789 49.2759H10.0026V47.4616H13.285C13.9821 47.4616 14.5476 47.3416 14.9816 47.1015C15.4155 46.8568 15.7341 46.5244 15.9372 46.1043C16.1403 45.6842 16.2419 45.2064 16.2419 44.6709C16.2419 44.1354 16.1403 43.6598 15.9372 43.2444C15.7341 42.8289 15.4132 42.5034 14.9746 42.268C14.5407 42.0325 13.9682 41.9148 13.2573 41.9148H10.5704L10.5704 54.2618H8.43066Z" fill="white"/>
+                <path d="M25.4952 54.2618H20.904L20.904 40.0797H25.6406C27.0302 40.0797 28.2236 40.3636 29.2207 40.9315C30.2179 41.4947 30.982 42.3049 31.5129 43.3621C32.0484 44.4147 32.3161 45.6773 32.3161 47.15C32.3161 48.6273 32.0461 49.8968 31.5059 50.9586C30.9704 52.0204 30.1948 52.8376 29.1792 53.41C28.1636 53.9778 26.9355 54.2618 25.4952 54.2618ZM23.0438 52.3921H25.3775C26.4577 52.3921 27.3557 52.1889 28.0712 51.7827C28.7868 51.3718 29.3223 50.7786 29.6778 50.003C30.0333 49.2228 30.211 48.2718 30.211 47.15C30.211 46.0374 30.0333 45.0933 29.6778 44.3177C29.3269 43.5421 28.8029 42.9535 28.1058 42.5519C27.4087 42.1502 26.5431 41.9494 25.509 41.9494H23.0438L23.0438 52.3921Z" fill="white"/>
+                <path d="M34.977 54.2618V40.0797L43.7715 40.0797V41.9217L37.1168 41.9217V46.2428L43.1414 46.2428V48.0779L37.1168 48.0779V54.2618H34.977Z" fill="white"/>
+              </svg>
+
+              <div class="resource-title d-flex flex-column justify-content-center align-items-start">
+                <span class="fs-md-sm grotesk-reg text-start">Agreement-Form.pdf</span>
+                <span class="fs-xs resource-size text-start">94 KB of 94 KB <span class="resource-check">Completed</span> </span>
+              </div>
+
+              <svg width="34" height="34" viewBox="0 0 34 34" class="trash" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M29.2268 9.36623C29.199 9.36623 29.1572 9.36623 29.1155 9.36623C21.7532 8.62861 14.4049 8.35027 7.12619 9.08788L4.28706 9.36623C3.70254 9.4219 3.1876 9.00438 3.13193 8.41985C3.07626 7.83533 3.49378 7.33431 4.06439 7.27864L6.90351 7.00029C14.3075 6.24876 21.8089 6.54102 29.3242 7.27864C29.8948 7.33431 30.3123 7.84925 30.2567 8.41985C30.2149 8.96263 29.7557 9.36623 29.2268 9.36623Z" fill="#292D32"/>
+                <path d="M11.83 7.96064C11.7743 7.96064 11.7186 7.96064 11.6491 7.94672C11.0924 7.8493 10.7027 7.30653 10.8001 6.74984L11.1063 4.92668C11.329 3.59062 11.6351 1.73962 14.8779 1.73962L18.5242 1.73962C21.7808 1.73962 22.087 3.66021 22.2958 4.94059L22.6019 6.74984C22.6994 7.32045 22.3097 7.86322 21.753 7.94672C21.1824 8.04414 20.6396 7.65446 20.5561 7.09777L20.2499 5.28853C20.0551 4.07772 20.0133 3.84113 18.5381 3.84113L14.8918 3.84113C13.4166 3.84113 13.3887 4.03597 13.18 5.27461L12.8599 7.08385C12.7764 7.59879 12.331 7.96064 11.83 7.96064Z" fill="#292D32"/>
+                <path d="M21.1684 31.6616L12.2335 31.6616C7.37636 31.6616 7.18152 28.9756 7.02843 26.8045L6.12381 12.7898C6.08206 12.2192 6.52741 11.7182 7.09802 11.6764C7.68254 11.6486 8.16964 12.08 8.2114 12.6507L9.11602 26.6653C9.26911 28.7808 9.32478 29.574 12.2335 29.574L21.1684 29.574C24.091 29.574 24.1467 28.7808 24.2858 26.6653L25.1905 12.6507C25.2322 12.08 25.7332 11.6486 26.3038 11.6764C26.8744 11.7182 27.3198 12.2053 27.278 12.7898L26.3734 26.8045C26.2203 28.9756 26.0255 31.6616 21.1684 31.6616Z" fill="#292D32"/>
+                <path d="M19.0113 24.0073H14.3768C13.8062 24.0073 13.333 23.5341 13.333 22.9635C13.333 22.3929 13.8062 21.9197 14.3768 21.9197H19.0113C19.5819 21.9197 20.055 22.3929 20.055 22.9635C20.055 23.5341 19.5819 24.0073 19.0113 24.0073Z" fill="#292D32"/>
+                <path d="M20.1802 18.4403H13.2215C12.6509 18.4403 12.1777 17.9671 12.1777 17.3965C12.1777 16.8258 12.6509 16.3527 13.2215 16.3527H20.1802C20.7508 16.3527 21.224 16.8258 21.224 17.3965C21.224 17.9671 20.7508 18.4403 20.1802 18.4403Z" fill="#292D32"/>
+              </svg>
+
+            </div>
+
+            <!-- Resource file drop -->
+            <div class="file-drop resource d-flex flex-column gap-2 justify-content-center align-items-center p-5 position-relative mt-3 mb-8" id="drop-zone-resource">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.9204 38.6796H11.0803C5.20041 38.2596 2.56055 33.7397 2.56055 29.7197C2.56055 25.6997 5.20044 21.1598 10.9804 20.7598C11.8004 20.6798 12.5203 21.3198 12.5803 22.1598C12.6403 22.9798 12.0204 23.6998 11.1804 23.7598C7.30049 24.0398 5.56051 26.9597 5.56051 29.7397C5.56051 32.5197 7.30049 35.4396 11.1804 35.7196H14.9204C15.7404 35.7196 16.4204 36.3996 16.4204 37.2196C16.4204 38.0396 15.7404 38.6796 14.9204 38.6796Z" fill="#292D32"/>
+                <path d="M33.3395 38.6795C33.2995 38.6795 33.2795 38.6795 33.2395 38.6795C32.4195 38.6795 31.6596 37.9995 31.6596 37.1795C31.6596 36.3195 32.2996 35.6795 33.1396 35.6795C35.5995 35.6795 37.7995 34.8195 39.5195 33.2795C42.6395 30.5596 42.8394 26.6396 41.9994 23.8797C41.1595 21.1397 38.8195 17.9997 34.7395 17.4997C34.0795 17.4197 33.5595 16.9197 33.4395 16.2597C32.6395 11.4598 30.0596 8.13983 26.1396 6.93985C22.0997 5.67986 17.3797 6.91984 14.4397 9.99981C11.5797 12.9798 10.9198 17.1597 12.5797 21.7597C12.8597 22.5397 12.4598 23.3996 11.6798 23.6796C10.8999 23.9596 10.0398 23.5597 9.75983 22.7797C7.73985 17.1397 8.65986 11.7398 12.2798 7.93983C15.9798 4.05988 21.9197 2.51988 27.0196 4.07986C31.6996 5.51985 34.9995 9.3798 36.1995 14.7397C40.2794 15.6597 43.5594 18.7597 44.8594 23.0397C46.2794 27.6996 44.9994 32.4996 41.4995 35.5395C39.2795 37.5395 36.3795 38.6795 33.3395 38.6795Z" fill="#292D32"/>
+                <path d="M23.9999 44.5596C19.9799 44.5596 16.22 42.4196 14.16 38.9596C13.94 38.6196 13.72 38.2196 13.54 37.7796C12.86 36.3596 12.5 34.7397 12.5 33.0597C12.5 26.7198 17.6599 21.5598 23.9999 21.5598C30.3398 21.5598 35.4997 26.7198 35.4997 33.0597C35.4997 34.7597 35.1398 36.3596 34.4198 37.8396C34.2598 38.2196 34.0398 38.6196 33.7998 38.9996C31.7798 42.4196 28.0198 44.5596 23.9999 44.5596ZM23.9999 24.5598C19.3199 24.5598 15.5 28.3797 15.5 33.0597C15.5 34.2997 15.76 35.4596 16.26 36.5196C16.42 36.8596 16.5599 37.1396 16.7199 37.3996C18.2399 39.9796 21.0199 41.5596 23.9798 41.5596C26.9398 41.5596 29.7198 39.9796 31.2198 37.4396C31.3998 37.1396 31.5598 36.8596 31.6798 36.5796C32.2198 35.4796 32.4798 34.3197 32.4798 33.0797C32.4998 28.3797 28.6798 24.5598 23.9999 24.5598Z" fill="#292D32"/>
+                <path d="M22.8598 36.5395C22.4798 36.5395 22.0998 36.3995 21.7998 36.0995L19.8198 34.1195C19.2398 33.5395 19.2398 32.5795 19.8198 31.9995C20.3998 31.4195 21.3597 31.4195 21.9397 31.9995L22.8998 32.9595L26.0997 29.9996C26.7197 29.4396 27.6597 29.4796 28.2197 30.0795C28.7797 30.6795 28.7397 31.6396 28.1397 32.1995L23.8798 36.1395C23.5798 36.3995 23.2198 36.5395 22.8598 36.5395Z" fill="#292D32"/>
+              </svg>
+              <span class="grotesk-reg w-auto text-center">Choose a file or drag and drop it here</span>
+              <span class="grotesk-reg w-auto text-center file-info">JPEG, PNG, PDG, and MP4 formats, up to 50MB</span>
+              <!-- File input -->
+              <input
+                type="file"
+                id="file-input-resource"
+                accept="image/png, image/jpeg, video/mp4"
+                onChange=""
+                class="d-none"
+              />
+              <!-- Browse button -->
+              <button class="file-input-btn resource py-1 px-8 mt-2">Browse File</button>
+            </div>
+
+
+          </form>
+        </div>
+
+        <div class="col-12 col-lg-6  col-xxl-4 mb-6 mb-lg-auto gap-5 d-flex flex-column justify-content-start align-items-center">
+          <div class="p-3 bg-off-white d-flex flex-column gap-3 rounded-2">
+            <span class="text-start fs-md grotesk-mono-bold">Authors</span>
+            <span class="text-start fs-sm grotesk-mono-reg">Click on an author to change them. Drag to change their order. Click on Remove to remove them.</span>
+            <!-- Authors table -->
+            <div class="table-wrap">
+              <table class=" mb-0 authors-list rounded-2 authors-table"></table>
+            </div>
+
+            <!-- Add authors -->
+            <div class="add-author-wrap ps-1 mt-2 user-select-none position-relative">
+              <span class="add-author">Add Author</span>
+
+              <!-- Add author popup -->
+              <div class="add-author-popup bg-off-white position-absolute">
+                <i class="bi bi-x position-absolute"></i>
+                <span class="list-empty d-none">No authors remaining</span>
+                <ul class="add-author-list list-unstyled p-0 rounded-2 bg-white m-0"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured image -->
+          <div class="p-3 bg-off-white d-flex flex-column gap-3 rounded-2">
+            <span class="text-start fs-md grotesk-mono-bold">Featured Image</span>
+            <span class="text-start fs-sm grotesk-mono-reg">
+              This image will appear as the featured image for the interview,
+              it is recommended to make this a headshot if applicable.</span>
+            <img class="draft-img rounded-2" src="assets/story-portrait.png" alt="featured img">
+            <span class="text-end text-red pointer fs-sm hover-underline w-fit me-0 ms-auto">Replace</span>
+          </div>
+
+          <!-- Publish -->
+          <div class="p-3 bg-off-white w-100 d-flex flex-column gap-3 rounded-2">
+            <span class="text-start fs-md grotesk-mono-bold">Publish</span>
+            <!-- Status dropdown -->
+            <div class="draft-dropdown-wrap" id="status">
+              <span class="dropdown-title fs-sm">Status</span>
+              <div class="dropdown-placeholder bg-white d-flex justify-content-between">
+                <span>Placeholder</span>
+                <svg width="18" height="12" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z" fill="#ADB5BD"/>
+                </svg>
+              </div>
+              <div class="draft-dropdown">
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="status-draft" value="draft" name="status">
+                  <label for="status-draft" class="dropdown-item-label">Draft</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="status-published" value="published" name="status">
+                  <label for="status-published" class="dropdown-item-label">Published</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="status-unlisted" value="unlisted" name="status">
+                  <label for="status-unlisted" class="dropdown-item-label">Unlisted</label>
+                </div>
+              </div>
+            </div>
+            <!-- Visibility dropdown -->
+            <div class="draft-dropdown-wrap" id="visibility">
+              <span class="dropdown-title fs-sm">Visibility</span>
+              <div class="dropdown-placeholder bg-white d-flex justify-content-between">
+                <span>Placeholder</span>
+                <svg width="18" height="12" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z" fill="#ADB5BD"/>
+                </svg>
+              </div>
+              <div class="draft-dropdown">
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="visibility-public" value="public" name="visibility">
+                  <label for="visibility-public" class="dropdown-item-label">Public</label>
+                </div>
+
+                <div class="dropdown-item-wrap">
+                  <input type="radio" class="draft-dropdown-item" id="visibility-private" value="private" name="visibility">
+                  <label for="visibility-private" class="dropdown-item-label">Private</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit update button -->
+            <button id="update-draft" class="bg-blue admin-btn letters-spaced text-white fs-sm grotesk-mono-reg px-4 py-3 rounded-2">UPDATE</button>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="container-fluid py-9 ps-2 ps-md-4 bg-grey-dark text-white position-relative">
+        <div class="footer-wrap m-auto ps-3 ps-md-0 d-flex flex-column justify-content-between gap-4">
+        <div class="d-flex align-items-end footer-title">
+          <h1 class="grotesk-mono-bold letters-tight head-h1 fs-xl text-white">SING<span style="margin-left: 5px">SING</span></h1>
+          <span class="grotesk-mono-reg letters-tight foot-prison fs-sm text-white ms-1">
+            <span style="letter-spacing: 2px">PRISON</span>
+            <br />
+            <span style="letter-spacing: 1px">MUSEUM</span>
+          </span>
+        </div>
+  <div class="row">
+    <div class="col-12 col-md-4 my-3 my-md-0 order-1">
+        <div>
+          <h4 class="grotesk-mono-bold fs-footer-bold mb-0">Address<br /></h4>
+          <span class="grotesk-reg fs-body">
+            Sing Sing Prison Museum Office<br />
+            30 State Street <br />
+            Ossing, New York 10562
+          </span>
+        </div>
+
+        <div>
+          <h4 class="grotesk-mono-bold mt-4 mt-md-0 fs-footer-bold mb-0">Telephone<br /></h4>
+          <span class="grotesk-reg fs-body">+1 914-236-5407</span>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4 my-3 my-md-0 order-4 order-md-2">
+      <div class="w-100 w-md-75 h-100 ps-md-0 mt-3 mt-md-0 m-auto d-flex flex-column justify-content-between">
+        <ul class="list-unstyled footer-ul grotesk-reg fs-body pt-3 d-flex d-md-block flex-wrap gap-4 pe-2">
+          <li><a href="" class="footer-link">Full Exhibition</a></li>
+          <li><a href="" class="footer-link">Religion In Incarceration Exhibition</a></li>
+          <li><a href="" class="footer-link">About The Project</a></li>
+          <li><a href="" class="footer-link">Donate</a></li>
+          <li><a href="" class="footer-link">Contact</a></li>
+          <li><a href="" class="footer-link">Full SSPM Website</a></li>
+        </ul>
+
+        <div class="socials d-flex  justify-content-start gap-2">
+          <a href="" class="social"><i class="footer-icon bi bi-linkedin fs-lg text-white"></i></a>
+          <a href="" class="social"><i class="footer-icon bi bi-facebook fs-lg text-white"></i></a>
+          <a href="" class="social"><i class="footer-icon bi bi-twitter-x fs-lg text-white"></i></a>
+          <a href="" class="social"><i class="footer-icon bi bi-instagram fs-lg text-white"></i></a>
+        </div>
+      </div>
+
+    </div>
+     <div class="col-12 col-md-4 my-3 my-md-0 ps-3 ps-md-0 order-2">
+        <div class="w-100 w-md-75 m-auto d-flex flex-column justify-content-start">
+          <h4 class="grotesk-mono-bold fs-footer-bold mb-3">Newsletter Sign Up</h4>
+          <form action="/send-email" method="post" class="d-flex flex-column">
+            <label for="email" class="grotesk-reg fs-body">Email Address</label>
+            <input type="email" id="email" name="email" class="w-75 ms-0 bg-grey-mid opacity-25 border-0 rounded-2 py-2">
+            <button class="py-3 px-4 bg-purple border-0 rounded-2 mt-4 text-white fs-4 text-decoration-none full-button"
+            >GET IN TOUCH <i class="bi bi-arrow-right-short"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+  </div>
+
+  </div>
+</footer>
+
+<script src="/js/header.js"></script>
+<script src="bootstrap/js/bootstrap.bundle.js"></script>
+<script src="js/author-draft.js"></script>
+</body>
+</html>

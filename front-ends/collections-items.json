@@ -1,0 +1,122 @@
+[
+  {
+    "image": "collections-portrait-1",
+    "id": "1",
+    "alt": "portrait-1",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "German",
+    "duration": 40
+  },
+  {
+    "image": "collections-portrait-2",
+    "id": "2",
+    "alt": "portrait-2",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "English",
+    "duration": 30
+  },
+  {
+    "image": "collections-portrait-3",
+    "id": "3",
+    "alt": "portrait-3",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "German",
+    "duration": 20
+  },
+  {
+    "image": "collections-portrait-4",
+    "id": "4",
+    "alt": "portrait-4",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "Polish",
+    "duration": 10
+  },
+  {
+    "image": "collections-portrait-5",
+    "id": "5",
+    "alt": "portrait-5",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "Italian",
+    "duration": 5
+  },
+  {
+    "image": "collections-portrait-6",
+    "id": "6",
+    "alt": "portrait-6",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "German",
+    "duration": 2
+  },
+  {
+    "image": "collections-portrait-7",
+    "id": "7",
+    "alt": "portrait-7",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "German",
+    "duration": 50
+  },
+  {
+    "image": "collections-portrait-8",
+    "id": "8",
+    "alt": "portrait-8",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "German",
+    "duration": 52
+  },
+  {
+    "image": "collections-portrait-9",
+    "id": "9",
+    "alt": "portrait-9",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "German",
+    "duration": 60
+  },
+  {
+    "image": "collections-portrait-10",
+    "id": "10",
+    "alt": "portrait-10",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "German",
+    "duration": 25
+  },
+  {
+    "image": "collections-portrait-11",
+    "id": "11",
+    "alt": "portrait-11",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "German",
+    "duration": 25
+  },
+  {
+    "image": "collections-portrait-12",
+    "id": "12",
+    "alt": "portrait-12",
+    "title": "Lorem Ipsum",
+    "short_title": "Short Title",
+    "description": "Suspendisse ut enim nec dui vestibulum placerat. Mauris in ex id magna varius molestie. Morbi dictum lacus nec nunc sollicitudin, eget facilisis nibh euismod.\nIn hac habitasse platea dictumst. Quisque accumsan erat sapien, quis dignissim massa eleifend sit amet. Sed magna nunc, scelerisque nec varius et, bibendum nec lectus...",
+    "language": "German",
+    "duration": 25
+  }
+]

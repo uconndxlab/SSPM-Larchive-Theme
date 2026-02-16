@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/extended-bootstrap.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body id="sign-in-body">
+
+  <!-- Header -->
+  <header class="bg-white ">
+    <div class="d-flex justify-content-between flex-wrap align-items-center py-2 container">
+      <a class="d-flex align-items-end text-decoration-none pointer" href="index.html">
+        <h1 class="grotesk-mono-bold letters-tight head-h1 fs-head text-grey">SING<span style="margin-left: 4px">SING</span></h1>
+        <span class="grotesk-mono-bold letters-tight head-prison fs-md text-grey ms-1">
+          <span style="letter-spacing: 2px">PRISON</span>
+          <br />
+          <span style="letter-spacing: 1px">MUSEUM</span>
+        </span>
+      </a>
+      <div class="admin-info position-relative d-flex align-items-center gap-2">
+        <span class="admin-name ms-0 ms-sm-auto grotesk-mono-reg">Hello, John</span>
+        <span class="admin-title author ms-0 me-auto ms-sm-auto me-sm-auto grotesk-mono-bold text-white rounded-1 py-1 px-2">Author</span>
+        <div class="rounded-2 hamburg-wrap bg-off-white d-flex justify-content-center align-items-center">
+          <i class="bi bi-list text-grey fs-1"></i>
+        </div>
+        <div class="hamburg-popup position-absolute bg-off-white">
+          <div class="list-unstyled hamburg-menu mb-0 w-100">
+              <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none text-grey   fs-md-sm text-start px-4 py-2  pointer" href="index.html">
+                Home
+              </a>
+              <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none text-grey   fs-md-sm text-start px-4 py-2  pointer" href="index.html">
+                Exhibitions?
+              </a>
+                   <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none text-grey   fs-md-sm text-start px-4 py-2  pointer" href="sign-in.html">
+                Admin Login
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Sign in -->
+  <section class="h-100 sign-in letters-spaced w-75 position-relative m-auto">
+    <div class="container bg-white my-15 rounded-2">
+      <div class="row">
+        <div class="col-12">
+          <div class="row p-5">
+            <div class="col-12 col-xl-6 pe-7 mb-4 mb-xl-0 d-flex flex-column gap-4">
+              <h3 class="fs-lg grotesk-mono-reg mb-3">Sign in</h3>
+
+              <!-- Sign in inputs -->
+              <div class="form-wrap d-flex flex-column gap-2">
+                <label for="email-signin">Email</label>
+                <input type="email" id="email-signin">
+              </div>
+              <div class="form-wrap d-flex flex-column gap-2">
+                <label for="password-signin" class="d-flex justify-content-between">Password<span><i class="bi bi-eye-slash-fill"></i>   Hide</span> </label>
+                <input type="password" id="password-signin">
+                <a class="text-end fs-sm forgot" href="">Forgot Password</a>
+              </div>
+              <button type="submit" class="w-100 submit letters-spaced py-3 bg-purple text-white fs-lg">SUBMIT</button>
+
+              <span class="fs-md or text-center">OR</span>
+
+              <!-- Google sign in -->
+              <button class="w-100 py-3 text-black fs-lg google">
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.501 12.2332C22.501 11.3699 22.4295 10.7399 22.2748 10.0865H12.2153V13.9832H18.12C18.001 14.9515 17.3582 16.4099 15.9296 17.3898L15.9096 17.5203L19.0902 19.935L19.3106 19.9565C21.3343 18.1249 22.501 15.4298 22.501 12.2332" fill="#4285F4"/>
+                  <path d="M12.214 22.5C15.1068 22.5 17.5353 21.5666 19.3092 19.9567L15.9282 17.3899C15.0235 18.0083 13.8092 18.4399 12.214 18.4399C9.38069 18.4399 6.97596 16.6083 6.11874 14.0766L5.99309 14.0871L2.68583 16.5954L2.64258 16.7132C4.40446 20.1433 8.0235 22.5 12.214 22.5Z" fill="#34A853"/>
+                  <path d="M6.12046 14.0767C5.89428 13.4234 5.76337 12.7233 5.76337 12C5.76337 11.2767 5.89428 10.5767 6.10856 9.92337L6.10257 9.78423L2.75386 7.2356L2.64429 7.28667C1.91814 8.71002 1.50146 10.3084 1.50146 12C1.50146 13.6917 1.91814 15.29 2.64429 16.7133L6.12046 14.0767" fill="#FBBC05"/>
+                  <path d="M12.2141 5.55997C14.2259 5.55997 15.583 6.41163 16.3569 7.12335L19.3807 4.23C17.5236 2.53834 15.1069 1.5 12.2141 1.5C8.02353 1.5 4.40447 3.85665 2.64258 7.28662L6.10686 9.92332C6.97598 7.39166 9.38073 5.55997 12.2141 5.55997" fill="#EB4335"/>
+                </svg>
+                Continue With Google
+              </button>
+              <!-- Privacy policy -->
+              <span class="privacy grotesk-reg fs-sm w-75">
+                By continuing you agree to the <span class="text-decoration-underline">Terms of use</span>
+                and <span class="text-decoration-underline">Privacy Policy.</span>
+              </span>
+            </div>
+
+            <!-- Request account -->
+            <div class="col-12 col-xl-6 ps-7 mt-5 mt-xl-0 position-relative request letters-spaced">
+              <h3 class="fs-lg grotesk-mono-reg mb-3">Request an account</h3>
+              <p class="pe-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus </p>
+
+              <!-- Request list -->
+              <ul class="mt-3 pe-5">
+                <li class="my-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus </li>
+                <li class="my-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus </li>
+                <li class="my-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus </li>
+                <li class="my-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus </li>
+                <li class="my-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus </li>
+                <li class="my-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus </li>
+              </ul>
+
+              <!-- Request button -->
+              <button class="w-100 py-3 letters-spaced bg-grey-dark text-white fs-lg">REQUEST AN ACCOUNT</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="container-fluid py-9 ps-2 ps-md-4 bg-grey-dark text-white position-relative">
+        <div class="footer-wrap m-auto ps-3 ps-md-0 d-flex flex-column justify-content-between gap-4">
+        <div class="d-flex align-items-end footer-title">
+          <h1 class="grotesk-mono-bold letters-tight head-h1 fs-xl text-white">SING<span style="margin-left: 5px">SING</span></h1>
+          <span class="grotesk-mono-reg letters-tight foot-prison fs-sm text-white ms-1">
+            <span style="letter-spacing: 2px">PRISON</span>
+            <br />
+            <span style="letter-spacing: 1px">MUSEUM</span>
+          </span>
+        </div>
+  <div class="row">
+    <div class="col-12 col-md-4 my-3 my-md-0 order-1">
+        <div>
+          <h4 class="grotesk-mono-bold fs-footer-bold mb-0">Address<br /></h4>
+          <span class="grotesk-reg fs-body">
+            Sing Sing Prison Museum Office<br />
+            30 State Street <br />
+            Ossing, New York 10562
+          </span>
+        </div>
+
+        <div>
+          <h4 class="grotesk-mono-bold mt-4 mt-md-0 fs-footer-bold mb-0">Telephone<br /></h4>
+          <span class="grotesk-reg fs-body">+1 914-236-5407</span>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4 my-3 my-md-0 order-4 order-md-2">
+      <div class="w-100 w-md-75 h-100 ps-md-0 mt-3 mt-md-0 m-auto d-flex flex-column justify-content-between">
+        <ul class="list-unstyled footer-ul grotesk-reg fs-body pt-3 d-flex d-md-block flex-wrap gap-4 pe-2">
+          <li><a href="" class="footer-link">Full Exhibition</a></li>
+          <li><a href="" class="footer-link">Religion In Incarceration Exhibition</a></li>
+          <li><a href="" class="footer-link">About The Project</a></li>
+          <li><a href="" class="footer-link">Donate</a></li>
+          <li><a href="" class="footer-link">Contact</a></li>
+          <li><a href="" class="footer-link">Full SSPM Website</a></li>
+        </ul>
+
+        <div class="socials d-flex  justify-content-start gap-2">
+          <a href="" class="social"><i class="footer-icon bi bi-linkedin fs-lg text-white"></i></a>
+          <a href="" class="social"><i class="footer-icon bi bi-facebook fs-lg text-white"></i></a>
+          <a href="" class="social"><i class="footer-icon bi bi-twitter-x fs-lg text-white"></i></a>
+          <a href="" class="social"><i class="footer-icon bi bi-instagram fs-lg text-white"></i></a>
+        </div>
+      </div>
+
+    </div>
+     <div class="col-12 col-md-4 my-3 my-md-0 ps-3 ps-md-0 order-2">
+        <div class="w-100 w-md-75 m-auto d-flex flex-column justify-content-start">
+          <h4 class="grotesk-mono-bold fs-footer-bold mb-3">Newsletter Sign Up</h4>
+          <form action="/send-email" method="post" class="d-flex flex-column">
+            <label for="email" class="grotesk-reg fs-body">Email Address</label>
+            <input type="email" id="email" name="email" class="w-75 ms-0 bg-grey-mid opacity-25 border-0 rounded-2 py-2">
+            <button class="py-3 px-4 bg-purple border-0 rounded-2 mt-4 text-white fs-4 text-decoration-none full-button"
+            >GET IN TOUCH <i class="bi bi-arrow-right-short"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+  </div>
+
+  </div>
+</footer>
+
+<script src="js/header.js"></script>
+<script src="bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>
