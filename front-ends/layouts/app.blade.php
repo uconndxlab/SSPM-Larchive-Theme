@@ -176,6 +176,10 @@
         });
     </script>
 
+    <!-- Theme scripts (loaded after core libs) -->
+    <script src="{{ \App\Support\Theme::asset('js/header.js') }}"></script>
+    <script src="{{ \App\Support\Theme::asset('js/main.js') }}"></script>
+
     @stack('scripts')
 </body>
 </html>
