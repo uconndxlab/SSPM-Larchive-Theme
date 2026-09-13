@@ -19,50 +19,7 @@
 
     @stack('head')
 </head>
-<body>
-    {{-- Contributor top bar (preserves existing app behaviour) --}}
-    @auth
-        @if(Auth::user()->isContributor())
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <div class="container">
-                    <span class="navbar-text me-3">
-                        <i class="bi bi-person-circle"></i>
-                        {{ Auth::user()->name }}
-                        @if(Auth::user()->isAdmin())
-                            <span class="badge bg-danger">Admin</span>
-                        @endif
-                    </span>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="adminNav">
-                        <ul class="navbar-nav mx-auto">
-                            @if(Auth::user()->isContributor())
-                                <li class="nav-item"><a class="nav-link" href="{{ route('admin.items.workspace') }}"><i class="bi bi-briefcase"></i> Items Workspace</a></li>
-                            @endif
-
-                            @if(Auth::user()->isAdmin())
-                                <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.index') }}"><i class="bi bi-people"></i> Users</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('admin.settings.theme') }}"><i class="bi bi-palette"></i> Theme Settings</a></li>
-                            @endif
-                        </ul>
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="{{ route('profile.show') }}"><i class="bi bi-person-badge"></i> My Profile</a></li>
-                            <li class="nav-item">
-                                <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn btn-link nav-link"><i class="bi bi-box-arrow-right"></i> Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        @endif
-    @endauth
-
+<body data-items-url="{{ route('items.index') }}">
     {{-- SSPM-style header/navigation (theme-provided) --}}
     <header class="bg-white">
         <div class="d-flex justify-content-between flex-wrap align-items-center py-2 container">
@@ -97,21 +54,33 @@
             <div class="admin-info position-relative d-flex align-items-center gap-2">
                 @auth
                     <span class="admin-name ms-0 ms-sm-auto grotesk-mono-reg">{{ Auth::user()->name }}</span>
-                    <span class="admin-title author ms-0 me-auto ms-sm-auto me-sm-auto grotesk-mono-bold text-white rounded-1 py-1 px-2">{{ Auth::user()->isContributor() ? 'Author' : (Auth::user()->isAdmin() ? 'Admin' : 'User') }}</span>
-                    <div class="rounded-2 hamburg-wrap bg-off-white d-flex justify-content-center align-items-center">
-                        <i class="bi bi-list text-grey fs-1"></i>
-                    </div>
-                @else
-                    <a href="{{ route('login') }}" class="btn btn-link">Login</a>
+                    <span class="admin-title author ms-0 me-auto ms-sm-auto me-sm-auto grotesk-mono-bold text-white rounded-1 py-1 px-2">{{ Auth::user()->isAdmin() ? 'Admin' : (Auth::user()->isContributor() ? 'Author' : 'User') }}</span>
                 @endauth
 
-                {{-- theme mobile menu / admin menu --- keep markup so JS in the theme can operate unchanged --}}
+                <button type="button" class="rounded-2 pointer hamburg-wrap bg-off-white d-flex justify-content-center align-items-center" aria-label="Open navigation" aria-expanded="false">
+                    <i class="bi bi-list text-grey fs-1" aria-hidden="true"></i>
+                </button>
+
+                {{-- Theme navigation; header.js controls its open state. --}}
                 <div class="hamburg-popup position-absolute bg-off-white">
                     <div class="list-unstyled hamburg-menu mb-0 w-100">
-                        <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('home') }}">Home</a>
-                        <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="#">Exhibitions?</a>
+                        <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('home') }}">Home</a>
+                        <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="#collections">Exhibitions</a>
                         @guest
-                            <a class="w-100 h-100 d-block px-5 text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('login') }}">Admin Login</a>
+                            <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('login') }}">Admin Login</a>
+                        @else
+                            <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('profile.show') }}">My Profile</a>
+                            @if(Auth::user()->isContributor())
+                                <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('admin.items.workspace') }}">Items Workspace</a>
+                            @endif
+                            @if(Auth::user()->isAdmin())
+                                <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('admin.users.index') }}">Users</a>
+                                <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('admin.settings.theme') }}">Theme Settings</a>
+                            @endif
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button tabindex="-1" type="submit" class="w-100 d-block text-grey fs-md-sm text-start px-4 py-2 pointer border-0 bg-transparent">Logout</button>
+                            </form>
                         @endguest
                     </div>
                 </div>
@@ -119,16 +88,16 @@
         </div>
     </header>
 
-    <main class="py-4">
+    <main>
         <div class="container">
             @include('partials.flash')
-            @yield('content')
         </div>
+        @yield('content')
     </main>
 
     {{-- Simple footer copied from theme assets (keeps look consistent) --}}
-    <footer class="container-fluid bg-grey-dark py-9 ps-2 ps-md-4 px-lx-5 text-white">
-        <div class="w-100 w-md-75 m-auto ps-3 ps-md-0 d-flex flex-column justify-content-between gap-4">
+    <footer class="container-fluid bg-grey-dark py-9 ps-2 ps-md-5 px-lx-5 text-white">
+        <div class="w-100 w-md-75 m-auto ps-3 ps-md-2 d-flex flex-column justify-content-between gap-4">
             <div class="d-flex align-items-end footer-title">
                 <h1 class="grotesk-mono-bold letters-tight head-h1 fs-xl text-white">SING<span style="margin-left: 5px">SING</span></h1>
                 <span class="grotesk-mono-reg letters-tight foot-prison fs-sm text-white ms-1">
@@ -172,11 +141,11 @@
                 </div>
 
                 <div class="col-12 col-md-4 my-3 my-md-0 ps-3 ps-md-0 order-2">
-                    <div class="w-100 w-md-75 m-auto d-flex flex-column justify-content-start">
-                        <h4 class="grotesk-mono-bold fs-footer-bold mb-3">Newsletter Sign Up</h4>
+                    <div class="w-100 foot-item-wrap w-md-75 m-auto d-flex flex-column justify-content-center">
+                        <h4 class="grotesk-mono-bold w-fit fs-footer-bold mb-3">Newsletter Sign Up</h4>
                         <form action="#" method="post" class="d-flex flex-column">
-                            <label for="email" class="grotesk-reg fs-body">Email Address</label>
-                            <input type="email" id="email" name="email" class="w-75 ms-0 bg-grey-mid opacity-25 border-0 rounded-2 py-2">
+                            <label for="email" class="w-fit grotesk-reg fs-body">Email Address</label>
+                            <input type="email" id="email" name="email" class="w-75 ms-0 border-0 rounded-2 py-2">
                             <button class="py-3 px-4 bg-purple border-0 rounded-2 mt-4 text-white fs-4 text-decoration-none full-button">GET IN TOUCH <i class="bi bi-arrow-right-short"></i></button>
                         </form>
                     </div>

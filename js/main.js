@@ -47,12 +47,14 @@ const step  = 8.33;
 let durMin = 0;
 let durMax = 60;
 
+// Capture the URL while this script is executing; document.currentScript is
+// null later inside DOMContentLoaded callbacks.
+const themeScript = document.currentScript;
+const THEME_BASE = themeScript && themeScript.src
+  ? themeScript.src.replace(/\/js\/[^/]+$/, '')
+  : window.location.origin + '/themes/sspm';
 
 window.addEventListener('DOMContentLoaded', async () => {
-
-  // Determine theme asset base (script's src -> remove /js/...)
-  const _script = document.currentScript && document.currentScript.src ? document.currentScript.src : null;
-  const THEME_BASE = _script ? _script.replace(/\/js\/[^\/]+$/, '') : window.location.origin + '/themes/sspm';
 
   // Ensure DOM elements loaded
   ensureDOMEls();
@@ -91,7 +93,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         selectedLangs.length = 0;
         langChecks.forEach(check => {
           const label = document.querySelector(`label[for="${check.id}"]`)
-          const langName = !label.textContent.toLowerCase().includes('english') ? label.textContent.toLowerCase() : 'English';
+          const langName = !label.textContent.toLowerCase().includes('english') ? label.textContent.toLowerCase() : 'english';
           if(check.checked) selectedLangs.push(langName);
         })
       }
@@ -324,9 +326,18 @@ function buildCollectionItems() {
         const hr = document.createElement('hr');
         li.appendChild(hr);
 
-        li.addEventListener('pointerdown', () => {
-          window.open('single-story.html','_self')
+        const openItem = () => {
+          const itemsUrl = document.body.dataset.itemsUrl || '/items';
+          window.location.assign(`${itemsUrl.replace(/\/$/, '')}/${encodeURIComponent(id)}`);
+        };
+
+        li.addEventListener('pointerdown', openItem)
+
+        li.addEventListener('keydown', (event) => {
+          if(event.key === 'Enter') openItem()
         })
+
+        li.tabIndex = 0;
 
         collectionUl.appendChild(li);
       })
