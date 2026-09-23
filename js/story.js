@@ -1,124 +1,88 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const audio = document.querySelector('#story-audio');
-  const audioWrap = document.querySelector('.story-audio');
-  const audioSlider = document.querySelector('#audio-dur-slider');
-  const timeline = document.querySelector('#audio-timeline');
-  const backButton = document.querySelector('.audio-reverse');
-  const playButton = document.querySelector('.audio-toggle');
-  const forwardButton = document.querySelector('.audio-forward');
-  const currentTime = document.querySelector('.audio-time.curr');
-  const fullTime = document.querySelector('.audio-time.full');
-
-  const formatTime = (seconds) => {
-    if (!Number.isFinite(seconds)) return '0:00';
-    const minutes = Math.floor(seconds / 60);
-    const remainder = Math.floor(seconds % 60);
-    return `${minutes}:${remainder < 10 ? '0' : ''}${remainder}`;
+  const player = document.getElementById('story-player');
+  const status = document.getElementById('playback-status');
+  const slider = document.getElementById('audio-dur-slider');
+  const progress = document.getElementById('playback-progress');
+  const play = document.querySelector('.audio-toggle');
+  const back = document.querySelector('.audio-reverse');
+  const forward = document.querySelector('.audio-forward');
+  const format = seconds => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
+  const seekable = () => player && Number.isFinite(player.duration) && player.duration > 0 && player.dataset.available === '1';
+  const setState = () => {
+    if (!play) return;
+    play.setAttribute('aria-pressed', String(!player.paused));
+    play.setAttribute('aria-label', player.paused ? 'Play' : 'Pause');
+    play.querySelector('.audio-toggle-icon').innerHTML = `<i class="bi bi-${player.paused ? 'play' : 'pause'}-circle fs-head"></i>`;
   };
-
-  const setPlayButton = (playing) => {
-    if (!playButton) return;
-    playButton.setAttribute('aria-pressed', String(playing));
-    playButton.setAttribute('aria-label', playing ? 'Pause' : 'Play');
-    playButton.querySelector('.audio-toggle-icon').innerHTML = playing
-      ? '<i class="bi bi-pause-circle" style="font-size:52px" aria-hidden="true"></i>'
-      : '<i class="bi bi-play-circle" style="font-size:52px" aria-hidden="true"></i>';
+  const update = () => {
+    const ready = seekable();
+    for (const el of [slider, back, forward]) if (el) el.disabled = !ready;
+    if (slider) slider.value = ready ? player.currentTime / player.duration * 100 : 0;
+    if (progress) progress.value = slider.value;
+    const current = document.querySelector('.audio-time.curr'), full = document.querySelector('.audio-time.full');
+    if (current) current.textContent = format(player.currentTime || 0);
+    if (full) full.textContent = ready ? format(player.duration) : '—';
   };
-
-  const seekToPercent = (percent) => {
-    if (!audio || !Number.isFinite(audio.duration)) return;
-    audio.currentTime = Math.max(0, Math.min(1, percent)) * audio.duration;
-  };
-
-  const updateWaveformOverlay = (previewPercent = null) => {
-    if (!audioWrap) return;
-
-    const percent = previewPercent ?? (
-      Number.isFinite(audio?.duration) && audio.duration > 0
-        ? (audio.currentTime / audio.duration) * 100
-        : 0
-    );
-
-    audioWrap.style.setProperty('--overlay-prog', `${percent}%`);
-  };
-
-  if (audio && audioSlider) {
-    setPlayButton(false);
-
-    const updateDuration = () => {
-      if (fullTime) fullTime.textContent = formatTime(audio.duration);
-    };
-
-    audio.addEventListener('loadedmetadata', updateDuration);
-    audio.addEventListener('durationchange', updateDuration);
-    audio.addEventListener('canplay', updateDuration);
-
-    // A media row can exist while its stored file is unavailable. In that
-    // case, use the theme's known-good sample instead of leaving a dead player.
-    audio.addEventListener('error', () => {
-      const fallbackSrc = audio.dataset.fallbackSrc;
-      if (!fallbackSrc || audio.dataset.usingFallback === 'true') return;
-      audio.dataset.usingFallback = 'true';
-      audio.src = fallbackSrc;
-      audio.load();
-    });
-
-    if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) updateDuration();
-
-    audio.addEventListener('timeupdate', () => {
-      const percent = Number.isFinite(audio.duration) && audio.duration > 0
-        ? (audio.currentTime / audio.duration) * 100
-        : 0;
-      audioSlider.value = String(percent);
-      updateWaveformOverlay(percent);
-      if (currentTime) currentTime.textContent = formatTime(audio.currentTime);
-    });
-
-    audio.addEventListener('play', () => setPlayButton(true));
-    audio.addEventListener('pause', () => setPlayButton(false));
-    audio.addEventListener('ended', () => setPlayButton(false));
-
-    audioSlider.addEventListener('input', () => seekToPercent(Number(audioSlider.value) / 100));
-    backButton?.addEventListener('click', () => { audio.currentTime = Math.max(0, audio.currentTime - 30); });
-    forwardButton?.addEventListener('click', () => { audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 30); });
-    playButton?.addEventListener('click', () => { audio.paused ? audio.play() : audio.pause(); });
-
-    timeline?.addEventListener('pointerdown', (event) => {
-      const bounds = timeline.getBoundingClientRect();
-      seekToPercent((event.clientX - bounds.left) / bounds.width);
-    });
-
-    // Match the reference player: hover previews the point that would be
-    // selected, then returns to the actual playback position on exit.
-    timeline?.addEventListener('mousemove', (event) => {
-      const bounds = timeline.getBoundingClientRect();
-      const percent = ((event.clientX - bounds.left) / bounds.width) * 100;
-      updateWaveformOverlay(Math.max(0, Math.min(100, percent)));
-    });
-
-    timeline?.addEventListener('mouseleave', () => {
-      window.setTimeout(updateWaveformOverlay, 100);
-    });
-
-    document.querySelectorAll('.overview-item[data-start]').forEach((segment) => {
-      segment.addEventListener('click', () => {
-        audio.currentTime = Number(segment.dataset.start || 0);
-        audio.play();
-      });
-    });
+  let recordingVersion = 0;
+  async function start() {
+    if (!player || player.dataset.available !== '1') return;
+    const version = recordingVersion;
+    try { await player.play(); if (version === recordingVersion) status.textContent = ''; }
+    catch {
+      if (version !== recordingVersion) return;
+      status.textContent = 'Playback could not start. Try again or download the original recording.'; setState();
+    }
   }
-
-  const selectors = Array.from(document.querySelectorAll('.selections [role="tab"]'));
-  const panels = Array.from(document.querySelectorAll('.story-content [role="tabpanel"]'));
-
-  selectors.forEach((selector, index) => {
-    selector.addEventListener('click', () => {
-      selectors.forEach((tab) => {
-        const selected = tab === selector;
-        tab.classList.toggle('selected', selected);
-        tab.setAttribute('aria-selected', String(selected));
-      });
-      panels.forEach((panel, panelIndex) => panel.classList.toggle('selected', panelIndex === index));
+  const seek = seconds => { if (seekable()) player.currentTime = Math.max(0, Math.min(player.duration, seconds)); };
+  if (player) {
+    for (const event of ['loadedmetadata', 'durationchange', 'timeupdate', 'emptied']) player.addEventListener(event, update);
+    for (const event of ['play', 'pause', 'ended']) player.addEventListener(event, setState);
+    player.addEventListener('error', () => {
+      recordingVersion++;
+      player.dataset.available = '0';
+      status.textContent = 'The recording could not be loaded. Its original file may be missing or unsupported.';
+      if (play) play.disabled = true;
+      update(); setState();
+    });
+    play?.addEventListener('click', () => { if (player.paused) start(); else player.pause(); });
+    slider?.addEventListener('input', () => seek(Number(slider.value) / 100 * player.duration));
+    back?.addEventListener('click', () => seek(player.currentTime - 30));
+    forward?.addEventListener('click', () => seek(player.currentTime + 30));
+    document.getElementById('recording-select')?.addEventListener('change', e => {
+      recordingVersion++;
+      player.pause();
+      const option = e.target.selectedOptions[0];
+      player.dataset.available = option.dataset.available;
+      if (option.dataset.available === '1') player.src = option.value;
+      else player.removeAttribute('src');
+      if (play) play.disabled = option.dataset.available !== '1';
+      status.textContent = option.dataset.available === '1' ? '' : 'The original recording is missing.';
+      player.load(); update(); setState();
+    });
+    document.querySelectorAll('[data-start]').forEach(segment => segment.addEventListener('click', () => {
+      if (segment.dataset.start !== '' && seekable()) { seek(Number(segment.dataset.start)); start(); }
+    }));
+    update();
+  }
+  const tabs = [...document.querySelectorAll('.selections [role="tab"]')];
+  const panels = [...document.querySelectorAll('.story-content [role="tabpanel"]')];
+  tabs.forEach((tab, i) => {
+    tab.id = `story-tab-${i}`; tab.setAttribute('aria-controls', `story-panel-${i}`);
+    panels[i].id = `story-panel-${i}`; panels[i].setAttribute('aria-labelledby', tab.id);
+  });
+  function select(index) {
+    tabs.forEach((tab, i) => { tab.classList.toggle('selected', i === index); tab.setAttribute('aria-selected', String(i === index)); tab.tabIndex = i === index ? 0 : -1; });
+    panels.forEach((panel, i) => { panel.classList.toggle('selected', i === index); panel.hidden = i !== index; });
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => select(index));
+    tab.addEventListener('keydown', e => {
+      if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) {
+        e.preventDefault();
+        const next = e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : (index + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        select(next); tabs[next].focus();
+      }
     });
   });
+  select(0);
 });

@@ -65,7 +65,7 @@
                 <div class="hamburg-popup position-absolute bg-off-white">
                     <div class="list-unstyled hamburg-menu mb-0 w-100">
                         <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('home') }}">Home</a>
-                        <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="#collections">Exhibitions</a>
+                        <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('exhibits.index') }}">Exhibitions</a>
                         @guest
                             <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('login') }}">Admin Login</a>
                         @else
@@ -123,8 +123,8 @@
                 <div class="col-12 col-md-4 my-3 my-md-0 order-4 order-md-2">
                     <div class="w-100 w-md-75 h-100 ps-md-0 mt-3 mt-md-0 m-auto d-flex flex-column justify-content-between">
                         <ul class="list-unstyled footer-ul grotesk-reg fs-body pt-3 d-flex d-md-block flex-wrap gap-4 pe-2">
-                            <li><a href="#" class="footer-link">Full Exhibition</a></li>
-                            <li><a href="#" class="footer-link">Religion In Incarceration Exhibition</a></li>
+                            <li><a href="{{ route('items.index') }}" class="footer-link">Full Archive</a></li>
+                            <li><a href="{{ route('exhibits.index') }}" class="footer-link">Exhibitions</a></li>
                             <li><a href="#" class="footer-link">About The Project</a></li>
                             <li><a href="#" class="footer-link">Donate</a></li>
                             <li><a href="#" class="footer-link">Contact</a></li>
