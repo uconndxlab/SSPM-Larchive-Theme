@@ -11,6 +11,7 @@
     $subjects = collect($presentation['subjects']);
     $primary = $presentation['primary'];
     $active = $primary->first();
+    $activeAvailable = $active && \SSPM\Theme\MediaAccess::exists($active);
 @endphp
 
 @section('content')
@@ -51,11 +52,11 @@
               @endforeach
             </select>
           @endif
-          <p id="playback-status" role="status" aria-live="polite">{{ !$active ? 'No recording is available for this record.' : (\SSPM\Theme\MediaAccess::exists($active) ? '' : 'The original recording is missing.') }}</p>
-          @if($active)
+          <p id="playback-status" role="status" aria-live="polite">{{ !$active ? 'No recording is available for this record.' : ($activeAvailable ? '' : 'The original recording is missing.') }}</p>
+          @if($activeAvailable)
             @if($item->item_type === 'audio')
               <div class="story-audio w-100">
-                <audio id="story-player" preload="metadata" data-available="{{ \SSPM\Theme\MediaAccess::exists($active) ? '1' : '0' }}" @if(\SSPM\Theme\MediaAccess::exists($active)) src="{{ \SSPM\Theme\MediaAccess::url($active) }}" @endif></audio>
+                <audio id="story-player" preload="metadata" data-available="1" src="{{ \SSPM\Theme\MediaAccess::url($active) }}"></audio>
                 <progress id="playback-progress" class="w-100" value="0" max="100" aria-label="Playback progress"></progress>
                 <label for="audio-dur-slider" class="visually-hidden">Recording position</label>
                 <input id="audio-dur-slider" type="range" class="w-100" value="0" step=".25" min="0" max="100" disabled>
@@ -63,11 +64,11 @@
               <div class="audio-settings d-flex gap-5 justify-content-center align-items-center pt-8">
                 <span class="audio-time curr fs-md">0:00</span><span class="audio-time full fs-md">—</span>
                 <button type="button" class="audio-btn audio-reverse" aria-label="Back 30 seconds" disabled>-30</button>
-                <button type="button" class="audio-btn audio-toggle" aria-label="Play" aria-pressed="false" @if(!\SSPM\Theme\MediaAccess::exists($active)) disabled @endif><span class="audio-toggle-icon"><i class="bi bi-play-circle fs-head"></i></span></button>
+                <button type="button" class="audio-btn audio-toggle" aria-label="Play" aria-pressed="false"><span class="audio-toggle-icon"><i class="bi bi-play-circle fs-head"></i></span></button>
                 <button type="button" class="audio-btn audio-forward" aria-label="Forward 30 seconds" disabled>+30</button>
               </div>
             @else
-              <video id="story-player" controls class="w-100 rounded-2" preload="metadata" data-available="{{ \SSPM\Theme\MediaAccess::exists($active) ? '1' : '0' }}" @if(\SSPM\Theme\MediaAccess::exists($active)) src="{{ \SSPM\Theme\MediaAccess::url($active) }}" @endif></video>
+              <video id="story-player" controls class="w-100 rounded-2" preload="metadata" data-available="1" src="{{ \SSPM\Theme\MediaAccess::url($active) }}"></video>
             @endif
           @endif
           <div class="recording-downloads mt-3 d-flex flex-column gap-2">
