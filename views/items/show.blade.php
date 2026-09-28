@@ -52,20 +52,21 @@
               @endforeach
             </select>
           @endif
-          <p id="playback-status" role="status" aria-live="polite">{{ !$active ? 'No recording is available for this record.' : ($activeAvailable ? '' : 'The original recording is missing.') }}</p>
+          <p id="playback-status" class="playback-status" role="status" aria-live="polite">{{ !$active ? 'No recording is available for this record.' : ($activeAvailable ? '' : 'The original recording is missing.') }}</p>
           @if($activeAvailable)
             @if($item->item_type === 'audio')
-              <div class="story-audio w-100">
+              <div class="story-audio d-flex flex-column position-relative z-1">
                 <audio id="story-player" preload="metadata" data-available="1" src="{{ \SSPM\Theme\MediaAccess::url($active) }}"></audio>
-                <progress id="playback-progress" class="w-100" value="0" max="100" aria-label="Playback progress"></progress>
+                @include('partials.audio-waveform')
                 <label for="audio-dur-slider" class="visually-hidden">Recording position</label>
-                <input id="audio-dur-slider" type="range" class="w-100" value="0" step=".25" min="0" max="100" disabled>
+                <input id="audio-dur-slider" type="range" class="audio-dur-slider z-4 mt-5 mb-2 position-relative" value="0" step=".25" min="0" max="100" disabled>
               </div>
-              <div class="audio-settings d-flex gap-5 justify-content-center align-items-center pt-8">
-                <span class="audio-time curr fs-md">0:00</span><span class="audio-time full fs-md">—</span>
-                <button type="button" class="audio-btn audio-reverse" aria-label="Back 30 seconds" disabled>-30</button>
+              <div class="audio-settings d-flex position-relative gap-5 justify-content-center align-items-center pt-8">
+                <span class="audio-time curr fs-md">0:00</span>
+                <span class="audio-time full fs-md">—</span>
+                <button type="button" class="audio-btn audio-reverse position-relative" aria-label="Back 30 seconds" disabled><span class="audio-skip-text fs-xs grotesk-mono-bold position-absolute">-30</span><i class="bi bi-arrow-clockwise back fs-head" aria-hidden="true"></i></button>
                 <button type="button" class="audio-btn audio-toggle" aria-label="Play" aria-pressed="false"><span class="audio-toggle-icon"><i class="bi bi-play-circle fs-head"></i></span></button>
-                <button type="button" class="audio-btn audio-forward" aria-label="Forward 30 seconds" disabled>+30</button>
+                <button type="button" class="audio-btn audio-forward position-relative" aria-label="Forward 30 seconds" disabled><span class="audio-skip-text fs-xs grotesk-mono-bold position-absolute">+30</span><i class="bi bi-arrow-clockwise forward fs-head" aria-hidden="true"></i></button>
               </div>
             @else
               <video id="story-player" controls class="w-100 rounded-2" preload="metadata" data-available="1" src="{{ \SSPM\Theme\MediaAccess::url($active) }}"></video>
@@ -169,16 +170,31 @@
     <div class="row content resources mt-7" role="tabpanel">
       <h4 class="fs-xl mb-4 grotesk-mono-bold">Resources</h4>
       <div class="col-12">
-        <div class="row g-3">
+        @php
+          $resourceImages = $presentation['resources']->filter(fn ($resource) => \SSPM\Theme\MediaAccess::kind($resource) === 'image' && \SSPM\Theme\MediaAccess::exists($resource))->take(5)->values();
+        @endphp
+        @if($resourceImages->isNotEmpty())
+          <div class="row">
+            <div class="col-12 d-grid resources-img-wrap">
+              @foreach($resourceImages as $resource)
+                <img class="resources-img {{ ['lg', 'sm-top', 'sm-bot', 'tall-1', 'tall-2'][$loop->index] }}" src="{{ \SSPM\Theme\MediaAccess::url($resource) }}" alt="{{ $resource->alt_text ?: $resource->filename }}">
+              @endforeach
+            </div>
+          </div>
+        @endif
+        <div class="row px-2 justify-content-between my-5 gap-3 gap-lg-0">
           @forelse($presentation['resources'] as $resource)
-            <div class="col-12 col-lg-6 resource-col p-4 rounded-2 bg-grey-extralight">
-              <h5 class="fs-lg grotesk-mono-bold">{{ $resource->metadata['label'] ?? $resource->filename }}</h5>
+            <div class="col-12 col-lg-6 resource-col d-flex flex-column flex-sm-row align-items-center justify-content-between px-2 py-4 p-sm-5 rounded-2 bg-grey-extralight">
+              <div class="resource-text-wrap">
+                <span class="fs-sm grotesk-reg download">{{ \SSPM\Theme\MediaAccess::kind($resource) === 'image' ? 'VIEW IMAGE' : 'DOWNLOAD FILE' }}</span>
+                <h5 class="resource-title fs-lg mt-3 mb-1 grotesk-mono-bold">{{ $resource->metadata['label'] ?? $resource->filename }}</h5>
               @if(\SSPM\Theme\MediaAccess::exists($resource))
-                @if(\SSPM\Theme\MediaAccess::kind($resource) === 'image')<img class="w-100 mb-3" src="{{ \SSPM\Theme\MediaAccess::url($resource) }}" alt="{{ $resource->alt_text ?: $resource->filename }}">@endif
-                <a href="{{ \SSPM\Theme\MediaAccess::url($resource, true) }}" download="{{ $resource->filename }}">Download {{ $resource->filename }}</a>
+                <a class="resource-link fs-body" href="{{ \SSPM\Theme\MediaAccess::url($resource, true) }}" download="{{ $resource->filename }}">{{ $resource->filename }}</a>
               @else
                 <p>Original file missing: {{ $resource->filename }}</p>
               @endif
+              </div>
+              @if(\SSPM\Theme\MediaAccess::exists($resource))<i class="bi bi-download fs-head text-purple" aria-hidden="true"></i>@endif
             </div>
           @empty
             <p>No supplemental resources are available for this record.</p>
@@ -193,7 +209,7 @@
       <div class="col-12 col-lg-7 mb-5 mb-lg-auto contribute-text d-flex flex-column justify-content-between">
         <h3 class="grotesk-mono-bold fs-xl">CONTRIBUTE TO THE ARCHIVE</h3>
         <p class="grotesk-reg fs-body mb-5">Help preserve the stories connected to Sing Sing by sharing oral histories, documents, photographs, and other archival materials.</p>
-
+        <a href="https://www.singsingprisonmuseum.org/contact.html" class="py-3 px-5 bg-purple border-0 rounded-2 text-white fs-4 text-decoration-none full-button">GET IN TOUCH <i class="bi bi-arrow-right-short"></i></a>
       </div>
       <div class="col-12 col-lg-5 mb-auto mt-auto d-flex justify-content-center justify-content-lg-end">
         <img class="contribute-icons" alt="Contribute to the archive" src="{{ \App\Support\Theme::asset('assets/contribute-icons.png') }}">

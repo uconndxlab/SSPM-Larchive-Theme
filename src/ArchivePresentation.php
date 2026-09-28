@@ -124,6 +124,6 @@ class ArchivePresentation
 
         return ['archiveCards' => $cards->all(), 'categories' => $cards->pluck('categories')->flatten()->unique()->sort()->values(),
             'languages' => $cards->pluck('languages')->flatten()->unique()->sort()->values(),
-            'durationMax' => max(1, ceil($cards->max('duration') ?? 0)), 'featuredExhibit' => $featuredExhibit];
+            'durationMax' => max(60, ceil($cards->max('duration') ?? 0)), 'featuredExhibit' => $featuredExhibit];
     }
 }

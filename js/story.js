@@ -2,7 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const player = document.getElementById('story-player');
   const status = document.getElementById('playback-status');
   const slider = document.getElementById('audio-dur-slider');
-  const progress = document.getElementById('playback-progress');
+  const waveform = document.querySelector('.story-audio');
+  const timeline = document.getElementById('audio-timeline');
+  const resizeTimeline = () => {
+    if (!timeline) return;
+    const width = window.innerWidth;
+    timeline.setAttribute('width', width > 1600 ? '800' : width > 900 ? '750' : width > 800 ? '650' : width > 650 ? '600' : width > 550 ? '450' : '400');
+  };
+  resizeTimeline();
+  window.addEventListener('resize', resizeTimeline);
   const play = document.querySelector('.audio-toggle');
   const back = document.querySelector('.audio-reverse');
   const forward = document.querySelector('.audio-forward');
@@ -18,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ready = seekable();
     for (const el of [slider, back, forward]) if (el) el.disabled = !ready;
     if (slider) slider.value = ready ? player.currentTime / player.duration * 100 : 0;
-    if (progress) progress.value = slider.value;
+    if (waveform) waveform.style.setProperty('--overlay-prog', `${slider?.value || 0}%`);
     const current = document.querySelector('.audio-time.curr'), full = document.querySelector('.audio-time.full');
     if (current) current.textContent = format(player.currentTime || 0);
     if (full) full.textContent = ready ? format(player.duration) : '—';
@@ -46,6 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     play?.addEventListener('click', () => { if (player.paused) start(); else player.pause(); });
     slider?.addEventListener('input', () => seek(Number(slider.value) / 100 * player.duration));
+    if (timeline && waveform) {
+      const timelinePercent = event => {
+        const bounds = timeline.getBoundingClientRect();
+        return Math.max(0, Math.min(100, (event.clientX - bounds.left) / bounds.width * 100));
+      };
+      timeline.addEventListener('pointermove', event => waveform.style.setProperty('--overlay-prog', `${timelinePercent(event)}%`));
+      timeline.addEventListener('pointerleave', update);
+      timeline.addEventListener('pointerdown', event => seek(timelinePercent(event) / 100 * player.duration));
+    }
     back?.addEventListener('click', () => seek(player.currentTime - 30));
     forward?.addEventListener('click', () => seek(player.currentTime + 30));
     document.getElementById('recording-select')?.addEventListener('change', e => {

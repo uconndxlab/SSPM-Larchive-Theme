@@ -934,33 +934,12 @@ footer form {
 
 .story-audio {
   --overlay-prog: 0%;
-  width: min(100%, 800px);
-}
-
-.story-audio .audio-timeline {
-  width: 100%;
-  max-width: 100%;
-}
-
-.story {
-  min-width: 0;
-  padding-left: clamp(1rem, 3vw, 3rem) !important;
-  padding-right: clamp(1rem, 3vw, 3rem) !important;
-}
-
-.story-info {
-  min-width: 0;
 }
 
 .story-info h3 {
   max-width: 100%;
   overflow-wrap: anywhere;
 }
-
-.story-player {
-  min-width: 0;
-}
-
 
 .story-audio:after {
   content: '';
@@ -2337,3 +2316,74 @@ thead th:first-child, tbody td:first-child {
 .collection-ul.grid .collections-item:focus-within > .item-short-title { opacity: 1; transform: none; }
 .collection-ul.grid .media-placeholder { display: flex; }
 .audio-btn:disabled { opacity: .4; cursor: default; }
+
+/* Keep the archive's dynamic media inside the static story layout. */
+.playback-status:empty { display: none; }
+.story-audio:after { display: block; }
+.audio-dur-slider:disabled { opacity: 1; }
+.audio-settings { min-height: 100px; }
+.audio-settings .audio-btn { width: 55px; height: 55px; flex: 0 0 auto; }
+.audio-settings .audio-reverse,
+.audio-settings .audio-forward { width: 50px; height: 50px; }
+.audio-settings .audio-btn .bi { display: block; line-height: 1; }
+.audio-settings .audio-btn:disabled { opacity: .5; }
+.story-player .recording-downloads { align-self: center; max-width: 100%; text-align: center; }
+.resources-img-wrap { min-height: 220px; }
+.resource-col .text-purple { color: var(--colors-purple); }
+.resource-link { color: var(--colors-grey-mid); overflow-wrap: anywhere; }
+.resource-link:hover { color: var(--colors-purple); }
+@media (max-width: 575px) {
+  .story-audio:after { display: none; }
+  .story-audio { width: 100%; }
+  .story-audio .audio-timeline { max-width: 100%; height: auto; }
+  .audio-settings { gap: 1.25rem !important; }
+  .resources-img-wrap { display: flex !important; flex-wrap: wrap; min-height: 0; }
+  .resources-img-wrap .resources-img { width: calc(50% - 5px); height: 180px; }
+}
+
+/* Sign in and archive workspace follow the matching static pages. */
+.sign-in-page { background: linear-gradient(180deg, #172B60 0%, #441977 100%); }
+.sign-in-page main { display: flow-root; }
+.sign-in-page .sign-in { min-height: 600px; }
+.sign-in-page .sign-in input[type="checkbox"] { width: 20px; height: 20px; outline: none; }
+.sign-in-page .password-toggle { color: var(--colors-grey); }
+.sign-in-page .password-toggle:hover { color: var(--colors-purple); }
+.sign-in-page .request-account-button { display: block; border-radius: 50px; margin-top: auto; }
+.sign-in-page .request-account-button:hover { background: var(--colors-grey-mid) !important; }
+.workspace-page .selections > a { border: none; padding: 7px 7px 7px 30px; position: relative; user-select: none; background: none; color: var(--colors-grey-dark); text-decoration: none; }
+.workspace-page .selections > a:hover { background: var(--colors-grey-extralight); }
+.workspace-page .selections > a:after { position: absolute; content: ''; left: 7px; top: 50%; transform: translateY(-50%); }
+.workspace-page .selections > a.selected { background: var(--colors-grey-extralight); border-radius: 5px; color: var(--colors-purple); }
+.workspace-page .selections > .pending-approval:before { display: none; }
+.workspace-count { display: inline-block; min-width: 24px; border-radius: 50%; padding: 2px 5px; text-align: center; background: var(--colors-red-dark); color: white; }
+.workspace-page .archive-table th:last-child { width: 30px; }
+.workspace-page .workspace-item-link { color: var(--colors-grey-dark); text-decoration: none; }
+.workspace-page .workspace-item-link:hover { color: var(--colors-purple); text-decoration: underline; }
+.workspace-page .status-filter { background: var(--colors-grey-extralight); }
+.workspace-page .badge { color: white; padding: .35rem .8rem; }
+.workspace-page .archive-table td { overflow-wrap: anywhere; }
+@media (max-width: 767px) {
+  .sign-in { width: 95% !important; }
+  .sign-in .row { padding: 1.5rem !important; }
+  .workspace-page .archive-table { min-width: 720px; }
+}
+
+.draft-page .draft .selections > a { display: inline-block; padding: 7px 7px 7px 30px; position: relative; color: var(--colors-purple); text-decoration: none; }
+.draft-page .draft .selections > a:after { position: absolute; content: ''; left: 7px; top: 50%; transform: translateY(-50%); }
+.draft-page .draft .selections > a.selected { background: var(--colors-grey-extralight); border-radius: 5px; }
+.draft-page .draft .card { border: 0; border-radius: 0; background: transparent; }
+.draft-page .draft .card-header { padding: 0 0 .8rem; border: 0; background: transparent; }
+.draft-page .draft .card-header h5,
+.draft-page .draft .card-header h6 { font-family: "Monument Grotesk", sans-serif; font-weight: 700; font-size: var(--fs-md); }
+.draft-page .draft-title:after { content: attr(data-status); right: auto; left: calc(100% + 12px); white-space: nowrap; }
+.draft-page .draft .card-body { padding: 0; }
+.draft-page .draft-sidebar > .card { padding: 1.25rem !important; border-radius: .4rem; background: var(--colors-off-white); }
+.draft-page .draft .form-control,
+.draft-page .draft .form-select { border: 1px solid var(--colors-grey-light); border-radius: 10px; padding: .65rem .9rem; }
+.draft-page .draft .form-control:focus,
+.draft-page .draft .form-select:focus { border-color: var(--colors-purple); box-shadow: 0 0 0 .15rem rgba(54,0,120,.12); }
+.draft-page .draft .form-label { font-family: "Monument Grotesk", sans-serif; color: var(--colors-grey-dark); }
+.draft-page .draft .nav-tabs { border-bottom-color: var(--colors-grey-light); }
+.draft-page .draft .nav-tabs .nav-link { color: var(--colors-grey-dark); }
+.draft-page .draft .nav-tabs .nav-link.active { color: var(--colors-purple); font-weight: 700; }
+.draft-page .draft-sidebar .card-body { padding: 0; }

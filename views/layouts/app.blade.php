@@ -19,7 +19,7 @@
 
     @stack('head')
 </head>
-<body data-items-url="{{ route('items.index') }}">
+<body class="@yield('body_class')" data-items-url="{{ route('items.index') }}">
     {{-- SSPM-style header/navigation (theme-provided) --}}
     <header class="bg-white">
         <div class="d-flex justify-content-between flex-wrap align-items-center py-2 container">
@@ -70,7 +70,7 @@
                             <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('login') }}">Admin Login</a>
                         @else
                             <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('profile.show') }}">My Profile</a>
-                            @if(Auth::user()->isContributor())
+                            @if(Auth::user()->isContributor() || Auth::user()->isAdmin())
                                 <a tabindex="-1" class="w-100 h-100 d-block text-grey text-decoration-none fs-md-sm text-start px-4 py-2 pointer" href="{{ route('admin.items.workspace') }}">Items Workspace</a>
                             @endif
                             @if(Auth::user()->isAdmin())
@@ -123,12 +123,12 @@
                 <div class="col-12 col-md-4 my-3 my-md-0 order-4 order-md-2">
                     <div class="w-100 w-md-75 h-100 ps-md-0 mt-3 mt-md-0 m-auto d-flex flex-column justify-content-between">
                         <ul class="list-unstyled footer-ul grotesk-reg fs-body pt-3 d-flex d-md-block flex-wrap gap-4 pe-2">
-                            <li><a href="{{ route('items.index') }}" class="footer-link">Full Archive</a></li>
+                            <li><a href="{{ route('home') }}#collections" class="footer-link">Full Archive</a></li>
                             <li><a href="{{ route('exhibits.index') }}" class="footer-link">Exhibitions</a></li>
                             <li><a href="#" class="footer-link">About The Project</a></li>
                             <li><a href="#" class="footer-link">Donate</a></li>
-                            <li><a href="#" class="footer-link">Contact</a></li>
-                            <li><a href="#" class="footer-link">Full SSPM Website</a></li>
+                            <li><a href="https://www.singsingprisonmuseum.org/contact.html" class="footer-link">Contact</a></li>
+                            <li><a href="https://www.singsingprisonmuseum.org/" class="footer-link">Full SSPM Website</a></li>
                         </ul>
 
                         <div class="socials d-flex justify-content-start gap-2">
