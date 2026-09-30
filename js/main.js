@@ -28,16 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
     list.replaceChildren();
     for (const item of filtered) {
       const li = element('li', 'collections-item rounded-1 overflow-hidden pointer');
-      li.classList.toggle('no-image', !item.image);
       if (item.image) {
         const img = element('img', 'item-img');
         img.src = item.image; img.alt = item.title;
-        img.addEventListener('error', () => { li.classList.add('no-image'); img.replaceWith(element('div', 'item-img media-placeholder', 'No image available')); }, {once: true});
+        img.addEventListener('error', () => { img.replaceWith(element('div', 'item-img media-placeholder', 'No image available')); }, {once: true});
         li.append(img);
       } else li.append(element('div', 'item-img media-placeholder', 'No image available'));
       const heading = element('h3', 'item-title grotesk-mono-bold fs-lg');
-      const link = element('a', 'text-reset', item.title); link.href = item.url; heading.append(link); li.append(heading);
-      li.append(element('h4', 'item-short-title grotesk-mono-light fs-sm', item.collection));
+      const link = element('a', 'text-reset', item.title); link.href = item.url; heading.append(link);
+      const caption = element('div', 'item-caption');
+      caption.append(heading);
+      if (item.collection) caption.append(element('h4', 'item-short-title grotesk-mono-light fs-sm', item.collection));
+      li.append(caption);
       li.append(element('p', 'item-description fs-body my-3', item.description));
       li.append(element('div', 'item-language d-flex gap-2', item.languages.join(', ')));
       const metadata = element('div', 'item-meta d-flex gap-3');
