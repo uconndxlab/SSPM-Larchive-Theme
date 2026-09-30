@@ -440,6 +440,33 @@ button:focus-visible {
   height: 100%;
 }
 
+.religion-exhibition .religion-people {
+  height: 400px;
+}
+
+.religion-exhibition .portrait:focus-visible {
+  outline: 3px solid var(--colors-purple) !important;
+  outline-offset: 3px;
+}
+
+@media (max-width: 1199.98px) {
+  .religion-exhibition .religion-people {
+    height: 450px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .religion-exhibition .religion-people {
+    height: 700px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .religion-exhibition .portrait {
+    transition: none;
+  }
+}
+
 
 
 .search-btn {

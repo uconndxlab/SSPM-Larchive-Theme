@@ -21,6 +21,8 @@
     </div>
   </section>
 
+  @include('partials.religion-exhibition')
+
   @if($featuredExhibit)
   <section class="d-flex container mb-20">
     <div class="row religion-row gx-5 gx-xl-4 px-0 px-sm-2">

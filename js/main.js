@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.religion-people').forEach(group => {
+    const portraits = [...group.querySelectorAll('.portrait')];
+    const activate = portrait => {
+      portraits.forEach(other => {
+        const active = other === portrait;
+        other.classList.toggle('active', active);
+        if (other.hasAttribute('aria-pressed')) other.setAttribute('aria-pressed', String(active));
+      });
+    };
+    portraits.forEach(portrait => {
+      for (const event of ['pointerenter', 'pointerdown', 'focus', 'click']) {
+        portrait.addEventListener(event, () => activate(portrait));
+      }
+    });
+  });
+
   const data = document.getElementById('archive-data');
   if (!data) return;
   const items = JSON.parse(data.textContent);
@@ -88,8 +104,5 @@ document.addEventListener('DOMContentLoaded', () => {
     control.addEventListener('click', switchView);
     control.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); switchView(); } });
   }
-  document.querySelectorAll('.portrait').forEach(p => p.addEventListener('pointerenter', () => {
-    document.querySelectorAll('.portrait').forEach(other => other.classList.toggle('active', other === p));
-  }));
   render();
 });

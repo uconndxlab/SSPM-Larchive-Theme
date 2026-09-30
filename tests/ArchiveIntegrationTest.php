@@ -97,7 +97,8 @@ class ArchiveIntegrationTest extends TestCase
 
     public function test_featured_exhibit_selection_and_visible_linked_items(): void
     {
-        $this->get('/')->assertOk()->assertDontSee('FULL EXHIBITION');
+        $this->get('/')->assertOk()->assertSee('RELIGION<span class="fs-4"> IN </span>INCARCERATION', false)
+            ->assertSee(route('exhibits.index'))->assertSee('assets/portrait_5.jpg');
         Exhibit::create(['title' => 'Hidden exhibit', 'status' => 'published', 'visibility' => 'hidden', 'featured' => true, 'sort_order' => -10]);
         Exhibit::create(['title' => 'Draft exhibit', 'status' => 'draft', 'visibility' => 'public', 'featured' => true, 'sort_order' => -5]);
         $first = Exhibit::create(['title' => 'Selected exhibition', 'description' => 'Real exhibition description', 'status' => 'published', 'visibility' => 'public', 'featured' => true, 'sort_order' => 0, 'cover_image' => 'public/exhibits/cover.jpg']);
