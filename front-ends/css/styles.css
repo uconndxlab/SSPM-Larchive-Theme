@@ -966,6 +966,15 @@ input[type="search"]::placeholder {
   user-select: none;
 }
 
+/* Align the skip labels with the circular portion of each arrow icon. */
+.audio-reverse .audio-skip-text {
+  margin-left: -10px;
+}
+
+.audio-forward .audio-skip-text {
+  margin-left: 10px;
+}
+
 .selections {
   border-bottom: 1px solid var(--colors-grey-light);
 }
