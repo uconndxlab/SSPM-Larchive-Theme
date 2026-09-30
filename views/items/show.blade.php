@@ -64,9 +64,21 @@
               <div class="audio-settings d-flex position-relative gap-5 justify-content-center align-items-center pt-8">
                 <span class="audio-time curr fs-md">0:00</span>
                 <span class="audio-time full fs-md">—</span>
-                <button type="button" class="audio-btn audio-reverse position-relative" aria-label="Back 30 seconds" disabled><span class="audio-skip-text fs-xs grotesk-mono-bold position-absolute">-30</span><i class="bi bi-arrow-clockwise back fs-head" aria-hidden="true"></i></button>
+                <button type="button" class="audio-btn audio-reverse position-relative" aria-label="Back 30 seconds" disabled>
+                  <span class="audio-skip-text fs-xs grotesk-mono-bold position-absolute">-30</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-clockwise back" viewBox="0 0 16 16" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                  </svg>
+                </button>
                 <button type="button" class="audio-btn audio-toggle" aria-label="Play" aria-pressed="false"><span class="audio-toggle-icon"><i class="bi bi-play-circle fs-head"></i></span></button>
-                <button type="button" class="audio-btn audio-forward position-relative" aria-label="Forward 30 seconds" disabled><span class="audio-skip-text fs-xs grotesk-mono-bold position-absolute">+30</span><i class="bi bi-arrow-clockwise forward fs-head" aria-hidden="true"></i></button>
+                <button type="button" class="audio-btn audio-forward position-relative" aria-label="Forward 30 seconds" disabled>
+                  <span class="audio-skip-text fs-xs grotesk-mono-bold position-absolute">+30</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-clockwise forward" viewBox="0 0 16 16" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                  </svg>
+                </button>
               </div>
             @else
               <video id="story-player" controls class="w-100 rounded-2" preload="metadata" data-available="1" src="{{ \SSPM\Theme\MediaAccess::url($active) }}"></video>

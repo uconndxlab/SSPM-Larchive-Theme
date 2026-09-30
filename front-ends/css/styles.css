@@ -959,6 +959,7 @@ input[type="search"]::placeholder {
 }
 
 .audio-skip-text {
+  line-height: 1;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -966,13 +967,10 @@ input[type="search"]::placeholder {
   user-select: none;
 }
 
-/* Align the skip labels with the circular portion of each arrow icon. */
-.audio-reverse .audio-skip-text {
-  margin-left: -10px;
-}
-
-.audio-forward .audio-skip-text {
-  margin-left: 10px;
+/* Keep the SVG and label in the same box, without an inline baseline gap. */
+.audio-reverse > svg,
+.audio-forward > svg {
+  display: block;
 }
 
 .selections {
