@@ -154,19 +154,27 @@
     <div class="row content transcript mt-7" role="tabpanel">
       <div class="col-12">
         <h4 class="fs-xl mb-4 grotesk-mono-bold">Transcript</h4>
-        <div class="transcript-wrap py-1 d-flex gap-4 flex-column">
-          @if($transcriptText)
-            <p class="fs-body" style="white-space: pre-wrap">{{ $transcriptText }}</p>
-          @endif
-          @foreach($segments as $segment)
-            <article class="transcript-item">
-              @if($segment['start'] !== null)<button class="segment-seek border-0 bg-transparent" data-start="{{ $segment['start'] }}">[{{ gmdate('H:i:s', (int) $segment['start']) }}]</button>@endif
-              @if(!empty($segment['title']))<h5>{{ $segment['title'] }}</h5>@endif
-              <p class="fs-body" style="white-space: pre-wrap">{{ $segment['text'] ?? '' }}</p>
-              @if(!empty($segment['synopsis']))<p>{{ $segment['synopsis'] }}</p>@endif
-              @if(!empty($segment['keywords']))<p>{{ is_array($segment['keywords']) ? implode(', ', $segment['keywords']) : $segment['keywords'] }}</p>@endif
-            </article>
-          @endforeach
+        @if($transcriptText || $segments->isNotEmpty())
+        <div class="transcript-panel">
+          <div class="transcript-wrap d-flex gap-4 flex-column" tabindex="0" role="region" aria-label="Transcript text">
+            @if($transcriptText)
+              <article class="transcript-item">
+                <p class="fs-body transcript-text">{{ $transcriptText }}</p>
+              </article>
+            @endif
+            @foreach($segments as $segment)
+              <article class="transcript-item">
+                @if($segment['start'] !== null)<button type="button" class="segment-seek transcript-item-title fs-lg grotesk-mono-bold border-0 bg-transparent" data-start="{{ $segment['start'] }}">[{{ gmdate('H:i:s', (int) $segment['start']) }}]</button>@endif
+                @if(!empty($segment['title']))<h5 class="transcript-item-title fs-lg grotesk-mono-bold">{{ $segment['title'] }}</h5>@endif
+                <p class="fs-body transcript-text mt-3">{{ $segment['text'] ?? '' }}</p>
+                @if(!empty($segment['synopsis']))<p>{{ $segment['synopsis'] }}</p>@endif
+                @if(!empty($segment['keywords']))<p>{{ is_array($segment['keywords']) ? implode(', ', $segment['keywords']) : $segment['keywords'] }}</p>@endif
+              </article>
+            @endforeach
+          </div>
+        </div>
+        @endif
+        <div class="transcript-downloads mt-4 d-flex gap-2 flex-column">
           @foreach($presentation['transcripts'] as $transcript)
             @if(\SSPM\Theme\MediaAccess::exists($transcript))
               <a href="{{ \SSPM\Theme\MediaAccess::url($transcript, true) }}" download="{{ $transcript->filename }}">Download transcript: {{ $transcript->filename }}</a>
@@ -194,20 +202,27 @@
             </div>
           </div>
         @endif
-        <div class="row px-2 justify-content-between my-5 gap-3 gap-lg-0">
+        <div class="resource-downloads my-5">
           @forelse($presentation['resources'] as $resource)
-            <div class="col-12 col-lg-6 resource-col d-flex flex-column flex-sm-row align-items-center justify-content-between px-2 py-4 p-sm-5 rounded-2 bg-grey-extralight">
+            @php
+              $resourceAvailable = \SSPM\Theme\MediaAccess::exists($resource);
+              $resourceFormat = strtoupper(pathinfo($resource->filename, PATHINFO_EXTENSION)) ?: 'FILE';
+              $resourceTitle = $resource->metadata['label'] ?? pathinfo($resource->filename, PATHINFO_FILENAME);
+              $resourceDescription = $resource->metadata['description'] ?? $resource->filename;
+            @endphp
+            <{{ $resourceAvailable ? 'a' : 'div' }} class="resource-col d-flex align-items-center justify-content-between px-4 py-4 p-sm-5 rounded-2 bg-grey-extralight"
+              @if($resourceAvailable) href="{{ \SSPM\Theme\MediaAccess::url($resource, true) }}" download="{{ $resource->filename }}" @endif>
               <div class="resource-text-wrap">
-                <span class="fs-sm grotesk-reg download">{{ \SSPM\Theme\MediaAccess::kind($resource) === 'image' ? 'VIEW IMAGE' : 'DOWNLOAD FILE' }}</span>
-                <h5 class="resource-title fs-lg mt-3 mb-1 grotesk-mono-bold">{{ $resource->metadata['label'] ?? $resource->filename }}</h5>
-              @if(\SSPM\Theme\MediaAccess::exists($resource))
-                <a class="resource-link fs-body" href="{{ \SSPM\Theme\MediaAccess::url($resource, true) }}" download="{{ $resource->filename }}">{{ $resource->filename }}</a>
-              @else
-                <p>Original file missing: {{ $resource->filename }}</p>
-              @endif
+                <span class="fs-sm grotesk-reg download">{{ $resourceAvailable ? 'DOWNLOAD ' . $resourceFormat : 'FILE UNAVAILABLE' }}</span>
+                <h5 class="resource-title fs-lg mt-3 mb-1 grotesk-mono-bold">{{ $resourceTitle }}</h5>
+                <p class="resource-text fs-body">{{ $resourceAvailable ? $resourceDescription : 'Original file missing: ' . $resource->filename }}</p>
               </div>
-              @if(\SSPM\Theme\MediaAccess::exists($resource))<i class="bi bi-download fs-head text-purple" aria-hidden="true"></i>@endif
-            </div>
+              @if($resourceAvailable)
+                <svg width="55" height="55" viewBox="0 0 34 34" class="resource-download-icon" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17 25.5L6.375 14.875L9.35 11.7938L14.875 17.3188V0H19.125V17.3188L24.65 11.7938L27.625 14.875L17 25.5ZM4.25 34C3.08125 34 2.08073 33.5839 1.24844 32.7516C0.416146 31.9193 0 30.9188 0 29.75V23.375H4.25V29.75H29.75V23.375H34V29.75C34 30.9188 33.5839 31.9193 32.7516 32.7516C31.9193 33.5839 30.9188 34 29.75 34H4.25Z" fill="currentColor"/>
+                </svg>
+              @endif
+            </{{ $resourceAvailable ? 'a' : 'div' }}>
           @empty
             <p>No supplemental resources are available for this record.</p>
           @endforelse
