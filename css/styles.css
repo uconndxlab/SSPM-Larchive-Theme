@@ -421,9 +421,11 @@ button:focus-visible {
 
 .portrait:after {
   content: '';
+  inset: 0;
   height: 100%;
   width: 100%;
   position: absolute;
+  pointer-events: none;
   background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.5) 100%);
 }
 
@@ -432,6 +434,7 @@ button:focus-visible {
 }
 .portrait-img {
   object-fit: cover;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   position: absolute;
