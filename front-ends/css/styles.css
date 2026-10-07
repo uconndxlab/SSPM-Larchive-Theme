@@ -873,6 +873,11 @@ input[type="search"]::placeholder {
 }
 
 
+.story-portrait {
+  max-width: 225px;
+  height: auto;
+}
+
 .story-audio:after {
   content: '';
   position: absolute;
@@ -1985,9 +1990,6 @@ thead th:first-child, tbody td:first-child {
 @media(max-width: 1600px) {
   .hero-paper.single-story {
     bottom: -25%;
-  }
-  .story-portrait {
-    max-width: 225px;
   }
 }
 
