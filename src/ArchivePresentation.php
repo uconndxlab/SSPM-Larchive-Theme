@@ -67,8 +67,10 @@ class ArchivePresentation
         $featured = $item->featuredImage;
         $image = $featured && MediaAccess::allowed($featured) && MediaAccess::kind($featured) === 'image' && MediaAccess::exists($featured)
             ? MediaAccess::url($featured) : null;
-        $duration = self::seconds($primary->first()?->metadata['duration'] ?? $primary->first()?->meta['duration'] ?? null)
-            ?? self::seconds($metadata['oh.duration'] ?? null);
+        // Item metadata contains the longest recording duration in seconds.
+        // Keep legacy media metadata as a fallback for items not yet backfilled.
+        $duration = self::seconds($metadata['oh.duration'] ?? null)
+            ?? self::seconds($primary->first()?->metadata['duration'] ?? $primary->first()?->meta['duration'] ?? null);
         $segments = [];
         foreach ($withTranscripts ? $transcripts : [] as $transcript) {
             if (! MediaAccess::exists($transcript)) {
