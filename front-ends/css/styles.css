@@ -873,6 +873,11 @@ input[type="search"]::placeholder {
 }
 
 
+.story-portrait {
+  max-width: 225px;
+  height: auto;
+}
+
 .story-audio:after {
   content: '';
   position: absolute;
@@ -959,11 +964,18 @@ input[type="search"]::placeholder {
 }
 
 .audio-skip-text {
+  line-height: 1;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
   user-select: none;
+}
+
+/* Keep the SVG and label in the same box, without an inline baseline gap. */
+.audio-reverse > svg,
+.audio-forward > svg {
+  display: block;
 }
 
 .selections {
@@ -1978,9 +1990,6 @@ thead th:first-child, tbody td:first-child {
 @media(max-width: 1600px) {
   .hero-paper.single-story {
     bottom: -25%;
-  }
-  .story-portrait {
-    max-width: 225px;
   }
 }
 

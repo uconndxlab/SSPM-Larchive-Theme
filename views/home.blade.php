@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@php
+    require_once public_path('themes/SSPM-Larchive-Theme/src/bootstrap.php');
+    $data = (new \SSPM\Theme\ArchivePresentation)->home();
+    $archiveCards = $data['archiveCards'];
+    $featuredExhibit = $data['featuredExhibit'];
+    $categories = $data['categories'];
+    $languages = $data['languages'];
+    $durationMax = $data['durationMax'];
+@endphp
+
 @section('content')
   {{-- Hero (converted from theme index.html) --}}
   <section class="hero w-100 h-auto d-flex flex-column justify-content-center position-relative align-items-center mb-15">
@@ -11,32 +21,37 @@
     </div>
   </section>
 
-  {{-- Main content (simplified for initial conversion) --}}
+
+  @if($featuredExhibit)
   <section class="d-flex container mb-20">
     <div class="row religion-row gx-5 gx-xl-4 px-0 px-sm-2">
       <div class="col-12 col-xl-4 religion-text d-flex flex-column gap-3 gap-xxl-3 justify-content-between">
-        <h3 class="fs-xl grotesk-mono-bold letters-tight religion-head">RELIGION<span class="fs-4"> IN </span>INCARCERATION</h3>
-        <p class="fs-body mb-0">Phasellus suscipit at ante a lobortis. Curabitur vehicula tristique enim in vestibulum. Suspendisse luctus finibus ligula, quis accumsan massa aliquam non.</p>
-        <a href="#" class="btn py-3 px-4 bg-purple border-0 rounded-2 text-white fs-4 full-button">FULL EXHIBITION <i class="bi bi-arrow-right-short"></i></a>
-        <span class="fs-6 text-grey-light">EXHIBITION OPEN TO THE PUBLIC UNTIL 02/22/2026</span>
+        <h3 class="fs-xl grotesk-mono-bold letters-tight religion-head">{{ $featuredExhibit['title'] }}</h3>
+        <p class="fs-body mb-0">{{ $featuredExhibit['description'] }}</p>
+        <a href="{{ $featuredExhibit['url'] }}" class="py-3 px-4 bg-purple border-0 rounded-2 text-white fs-4 text-decoration-none full-button">FULL EXHIBITION <i class="bi bi-arrow-right-short"></i></a>
       </div>
-
       <div class="col-12 col-xl-8 religion-people d-flex flex-md-row flex-column gap-2 mt-5 mt-xl-0">
-        <div class="portrait active rounded-2"><img class="portrait-img" src="{{ \App\Support\Theme::asset('assets/portrait_1.jpg') }}" alt="portrait-1"/></div>
-        <div class="portrait rounded-2"><img class="portrait-img" src="{{ \App\Support\Theme::asset('assets/portrait_2.jpg') }}" alt="portrait-2"/></div>
-        <div class="portrait rounded-2"><img class="portrait-img" src="{{ \App\Support\Theme::asset('assets/portrait_3.jpg') }}" alt="portrait-3"/></div>
-        <div class="portrait rounded-2"><img class="portrait-img" src="{{ \App\Support\Theme::asset('assets/portrait_4.jpg') }}" alt="portrait-4"/></div>
-        <div class="portrait rounded-2"><img class="portrait-img" src="{{ \App\Support\Theme::asset('assets/portrait_5.jpg') }}" alt="portrait-5"/></div>
+        @foreach($featuredExhibit['items']->take(5) as $card)
+          <a class="portrait rounded-2 {{ $loop->first ? 'active' : '' }}" href="{{ $card['url'] }}" aria-label="{{ $card['title'] }}">
+            @if($card['image'])<img class="portrait-img" src="{{ $card['image'] }}" alt="{{ $card['title'] }}">@else<div class="media-placeholder">No image available</div>@endif
+          </a>
+        @endforeach
+        @if($featuredExhibit['items']->isEmpty() && $featuredExhibit['cover'])
+          <a class="portrait rounded-2 active" href="{{ $featuredExhibit['url'] }}" aria-label="{{ $featuredExhibit['title'] }}"><img class="portrait-img" src="{{ $featuredExhibit['cover'] }}" alt=""></a>
+        @endif
       </div>
     </div>
   </section>
+  @endif
+
+  @include('partials.collection-browser')
 
   <section class="container my-10 ">
     <div class="contribute row py-5 px-3 px-lg-7 bg-grey-extralight rounded-2">
       <div class="col-12 col-lg-7 mb-5 mg-lg-auto  contribute-text d-flex flex-column justify-content-between">
         <h3 class="grotesk-mono-bold fs-xl">CONTRIBUTE TO THE ARCHIVE</h3>
-        <p class="gotesk-reg fs-body mb-5">Phasellus suscipit at ante a lobortis. Curabitur vehicula tristique enim in vestibulum. Suspendisse luctus finibus ligula, quis accumsan massa aliquam non.</p>
-        <a class="py-3 px-5 bg-purple border-0 rounded-2 mt-0 text-white fs-4 text-decoration-none full-button" href="#">GET IN TOUCH <i class="bi bi-arrow-right-short"></i></a>
+        <p class="grotesk-reg fs-body mb-5">Help preserve the stories connected to Sing Sing by sharing oral histories, documents, photographs, and other archival materials.</p>
+        <a href="https://www.singsingprisonmuseum.org/contact.html" class="py-3 px-5 bg-purple border-0 rounded-2 text-white fs-4 text-decoration-none full-button">GET IN TOUCH <i class="bi bi-arrow-right-short"></i></a>
       </div>
 
       <div class="col-12 col-lg-5 mb-auto mb-lg-0 mt-auto d-flex justify-content-center justify-content-lg-end">
@@ -45,4 +60,5 @@
     </div>
   </section>
 
+  <script type="application/json" id="archive-data">{!! json_encode($archiveCards, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_THROW_ON_ERROR) !!}</script>
 @endsection
