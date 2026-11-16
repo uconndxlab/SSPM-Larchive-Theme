@@ -3,6 +3,7 @@
 namespace SSPM\Theme;
 
 use App\Models\Media;
+use App\Services\TranscriptStorage;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -37,11 +38,23 @@ class MediaAccess
     {
         $path = self::path($media->path);
 
-        return $path !== null && Storage::disk('public')->exists($path);
+        if ($path === null) {
+            return false;
+        }
+
+        if (TranscriptStorage::isTranscript($media)) {
+            return TranscriptStorage::diskFor($path)->exists($path);
+        }
+
+        return Storage::disk('public')->exists($path);
     }
 
     public static function url(Media $media, bool $download = false): string
     {
+        if (TranscriptStorage::isTranscript($media)) {
+            return route('transcripts.download', $media);
+        }
+
         if (! $download && in_array(self::kind($media), ['audio', 'video'])) {
             return route('media.stream', $media);
         }
