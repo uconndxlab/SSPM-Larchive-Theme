@@ -17,7 +17,7 @@
     <img class="w-100 h-auto position-relative hero-img w-full object-fit-cover" src="{{ \App\Support\Theme::asset('assets/hero-bg.png') }}" alt="historical prison"/>
     <div class="position-absolute text-center hero-text-wrap">
       <h2 class="grotesk-mono-bold letters-tight text-center text-white mb-1 mb-sm-4 fs-head ">ORAL HISTORIES PROJECT</h2>
-      <span class="grotesk-mono-reg text-center fs-md text-white">THE STORIES OF SING SING PRISON</span>
+      <span class="grotesk-reg text-center fs-md text-white" style="letter-spacing: 5px !important;font-size:20px;">THE STORIES OF SING SING PRISON</span>
     </div>
   </section>
 
@@ -26,7 +26,7 @@
   <section class="d-flex container mb-20">
     <div class="row religion-row gx-5 gx-xl-4 px-0 px-sm-2">
       <div class="col-12 col-xl-4 religion-text d-flex flex-column gap-3 gap-xxl-3 justify-content-between">
-        <h3 class="fs-xl grotesk-mono-bold letters-tight religion-head">{{ $featuredExhibit['title'] }}</h3>
+        <h3 class="fs-xl grotesk-reg letters-tight religion-head">{{ $featuredExhibit['title'] }}</h3>
         <p class="fs-body mb-0">{{ $featuredExhibit['description'] }}</p>
         <a href="{{ $featuredExhibit['url'] }}" class="py-3 px-4 bg-purple border-0 rounded-2 text-white fs-4 text-decoration-none full-button">FULL EXHIBITION <i class="bi bi-arrow-right-short"></i></a>
       </div>
@@ -48,9 +48,9 @@
 
   <section class="container my-10 ">
     <div class="contribute row py-5 px-3 px-lg-7 bg-grey-extralight rounded-2">
-      <div class="col-12 col-lg-7 mb-5 mg-lg-auto  contribute-text d-flex flex-column justify-content-between">
-        <h3 class="grotesk-mono-bold fs-xl">CONTRIBUTE TO THE ARCHIVE</h3>
-        <p class="grotesk-reg fs-body mb-5">Help preserve the stories connected to Sing Sing by sharing oral histories, documents, photographs, and other archival materials.</p>
+      <div class="col-12 col-lg-7 mg-lg-auto contribute-text d-flex flex-column justify-content-center">
+        <h3 class="grotesk-reg fs-lg" style="letter-spacing:1px">CONTRIBUTE TO THE ARCHIVE</h3>
+        <p class="grotesk-reg fs-body mb-4">Help preserve the stories connected to Sing Sing by sharing oral histories, documents, photographs, and other archival materials.</p>
         <a href="https://www.singsingprisonmuseum.org/contact.html" class="py-3 px-5 bg-purple border-0 rounded-2 text-white fs-4 text-decoration-none full-button">GET IN TOUCH <i class="bi bi-arrow-right-short"></i></a>
       </div>
 
