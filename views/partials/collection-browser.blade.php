@@ -2,16 +2,17 @@
   <section class="container" id="collections">
     <div class="row gap-5 gap-md-0">
       <div class="col-12 col-md-4 d-flex flex-column gap-5">
-        <h3 class="fs-xl grotesk-mono-bold letters-tight mb-0">BROWSE FULL COLLECTION</h3>
+        <div>
+        <h3 class="fs-lg grotesk-reg letters-tight mb-0" style="letter-spacing:1px">BROWSE FULL COLLECTION</h3>
 
-        <form id="collection-search-form" method="get" class="w-100 position-relative d-flex">
+        <form id="collection-search-form" method="get" class="w-100 position-relative d-flex mt-4">
           <label for="collection-search" class="visually-hidden">Search the collection</label>
           <input type="search" id="collection-search" name="q" value="{{ request('q', request('search')) }}" placeholder="Search" class="search-bar rounded-2 w-100 bg-grey-extralight py-1">
           <button type="submit" class="search-btn bg-transparent" aria-label="Search"></button>
         </form>
-
+        </div>
         <div class="duration-wrap position-relative">
-          <h4 class="fs-lg grotesk-mono-bold mb-0 filter-title">Duration<button type="button" class="filter-clear bg-transparent border-0 p-0" id="duration-clear">CLEAR</button></h4>
+          <h4 class="fs-md grotesk-reg mb-0 filter-title">Duration<button type="button" class="filter-clear bg-transparent border-0 p-0" id="duration-clear">CLEAR</button></h4>
           <div class="slider-container">
             <div class="slider-track"></div>
             <label for="dur-slider-min" class="dur-slider-label min text-white bg-purple px-1 rounded-2 position-absolute text-nowrap">0 MIN</label>
@@ -22,7 +23,7 @@
         </div>
 
         <div class="categories-wrap">
-          <h4 class="fs-lg grotesk-mono-bold mb-3 filter-title">Category<button type="button" class="filter-clear bg-transparent border-0 p-0" id="category-clear">CLEAR</button></h4>
+          <h4 class="fs-md grotesk-reg mb-3 filter-title">Category<button type="button" class="filter-clear bg-transparent border-0 p-0" id="category-clear">CLEAR</button></h4>
           <div class="category-wrap ps-1 d-flex flex-column justify-content-between align-items-start gap-4">
             @foreach($categories as $label)
               <div class="category d-flex align-items-center gap-3">
@@ -34,7 +35,7 @@
         </div>
 
         <div class="categories-wrap">
-          <h4 class="fs-lg grotesk-mono-bold mb-3 filter-title">Native Language<button type="button" class="filter-clear bg-transparent border-0 p-0" id="language-clear">CLEAR</button></h4>
+          <h4 class="fs-md grotesk-reg mb-3 filter-title">Native Language<button type="button" class="filter-clear bg-transparent border-0 p-0" id="language-clear">CLEAR</button></h4>
           <div class="category-wrap ps-1 d-flex flex-column justify-content-between align-items-start gap-4">
             @foreach($languages as $label)
               <div class="category languages d-flex align-items-center gap-3">

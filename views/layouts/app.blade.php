@@ -34,7 +34,10 @@
                 ];
                 $logoPath = null;
                 foreach ($logoCandidates as $c) {
-                    if (file_exists($c)) { $logoPath = str_replace(public_path() . '/', '', $c); break; }
+                    if (file_exists($c)) {
+                        $logoPath = ltrim(str_replace('\\', '/', str_replace(public_path() . DIRECTORY_SEPARATOR, '', $c)), '/');
+                        break;
+                    }
                 }
             @endphp
 
@@ -99,30 +102,34 @@
     <footer class="container-fluid bg-grey-dark py-9 ps-2 ps-md-5 px-lx-5 text-white">
         <div class="w-100 w-md-75 m-auto ps-3 ps-md-2 d-flex flex-column justify-content-between gap-4">
             <div class="d-flex align-items-end footer-title">
-                <h1 class="grotesk-mono-bold letters-tight head-h1 fs-xl text-white">SING<span style="margin-left: 5px">SING</span></h1>
-                <span class="grotesk-mono-reg letters-tight foot-prison fs-sm text-white ms-1">
-                    <span style="letter-spacing: 2px">PRISON</span>
-                    <br />
-                    <span style="letter-spacing: 1px">MUSEUM</span>
-                </span>
+                @if($logoPath)
+                    <img src="{{ asset($logoPath) }}" alt="{{ config('app.name') }}" style="height:56px; width:auto; object-fit:contain; filter: grayscale(1) brightness(0) invert(1);" />
+                @else
+                    <h1 class="grotesk-mono-bold letters-tight head-h1 fs-xl text-white">SING<span style="margin-left: 5px">SING</span></h1>
+                    <span class="grotesk-mono-reg letters-tight foot-prison fs-sm text-white ms-1">
+                        <span style="letter-spacing: 2px">PRISON</span>
+                        <br />
+                        <span style="letter-spacing: 1px">MUSEUM</span>
+                    </span>
+                @endif
             </div>
 
             <div class="row">
                 <div class="col-12 col-md-4 my-3 my-md-0 order-1">
                     <div>
-                        <h4 class="grotesk-mono-bold fs-footer-bold mb-0">Address<br /></h4>
+                        <h4 class="grotesk-reg fs-footer-bold mb-0">Address<br /></h4>
                         <span class="grotesk-reg fs-body">Sing Sing Prison Museum Office<br />30 State Street <br />Ossing, New York 10562</span>
                     </div>
 
-                    <div>
-                        <h4 class="grotesk-mono-bold mt-4 mt-md-0 fs-footer-bold mb-0">Telephone<br /></h4>
+                    <div class="mt-4">
+                        <h4 class="grotesk-reg mt-4 mt-md-0 fs-footer-bold mb-0">Telephone<br /></h4>
                         <span class="grotesk-reg fs-body">+1 914-236-5407</span>
                     </div>
                 </div>
 
                 <div class="col-12 col-md-4 my-3 my-md-0 order-4 order-md-2">
-                    <div class="w-100 w-md-75 h-100 ps-md-0 mt-3 mt-md-0 m-auto d-flex flex-column justify-content-between">
-                        <ul class="list-unstyled footer-ul grotesk-reg fs-body pt-3 d-flex d-md-block flex-wrap gap-4 pe-2">
+                    <div class="w-100 w-md-75 h-100 ps-md-0 mt-md-0 m-auto d-flex flex-column justify-content-between">
+                        <ul class="list-unstyled footer-ul grotesk-reg fs-body d-flex d-md-block flex-wrap gap-4 pe-2">
                             <li><a href="{{ route('home') }}#collections" class="footer-link">Full Archive</a></li>
                             <li><a href="{{ route('exhibits.index') }}" class="footer-link">Exhibitions</a></li>
                             <li><a href="#" class="footer-link">About The Project</a></li>
@@ -142,7 +149,7 @@
 
                 <div class="col-12 col-md-4 my-3 my-md-0 ps-3 ps-md-0 order-2">
                     <div class="w-100 foot-item-wrap w-md-75 m-auto d-flex flex-column justify-content-center">
-                        <h4 class="grotesk-mono-bold w-fit fs-footer-bold mb-3">Newsletter Sign Up</h4>
+                        <h4 class="grotesk-reg w-fit fs-footer-bold mb-3">Newsletter Sign Up</h4>
                         <form action="#" method="post" class="d-flex flex-column">
                             <label for="email" class="w-fit grotesk-reg fs-body">Email Address</label>
                             <input type="email" id="email" name="email" class="w-75 ms-0 border-0 rounded-2 py-2">

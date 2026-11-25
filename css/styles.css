@@ -2,9 +2,9 @@
 
 @font-face {
   font-family: 'Monument Grotesk';
-  src: url('../fonts/mon-grotesk-reg/ABCMonumentGrotesk-Regular.woff2') format('woff2'),
-  url('../fonts/mon-grotesk-reg/ABCMonumentGrotesk-Regular.otf') format('opentype'),
-  url('../fonts/mon-grotesk-reg/ABCMonumentGrotesk-Regular.woff') format('woff');
+  src: url('../front-ends/fonts/mon-grotesk-reg/ABCMonumentGrotesk-Regular.woff2') format('woff2'),
+  url('../front-ends/fonts/mon-grotesk-reg/ABCMonumentGrotesk-Regular.otf') format('opentype'),
+  url('../front-ends/fonts/mon-grotesk-reg/ABCMonumentGrotesk-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,39 +12,39 @@
 
 @font-face {
   font-family: 'Monument Grotesk';
-  src: url('../fonts/mon-grotesk-reg-italic/ABCMonumentGrotesk-RegularItalic.woff2') format('woff2'),
-  url('../fonts/mon-grotesk-reg-italic/ABCMonumentGrotesk-RegularItalic.otf') format('opentype'),
-  url('../fonts/mon-grotesk-reg-italic/ABCMonumentGrotesk-RegularItalic.woff') format('woff');
+  src: url('../front-ends/fonts/mon-grotesk-reg-italic/ABCMonumentGrotesk-RegularItalic.woff2') format('woff2'),
+  url('../front-ends/fonts/mon-grotesk-reg-italic/ABCMonumentGrotesk-RegularItalic.otf') format('opentype'),
+  url('../front-ends/fonts/mon-grotesk-reg-italic/ABCMonumentGrotesk-RegularItalic.woff') format('woff');
   font-weight: normal;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Monument Grotesk';
-  src: url('../fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Light.woff2') format('woff2'),
-  url('../fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Light.otf') format('opentype'),
-  url('../fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Light.woff') format('woff');
+  font-family: 'Monument Grotesk Mono';
+  src: url('../front-ends/fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Light.woff2') format('woff2'),
+  url('../front-ends/fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Light.otf') format('opentype'),
+  url('../front-ends/fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Light.woff') format('woff');
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Monument Grotesk';
-  src: url('../fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Medium.woff2') format('woff2'),
-  url('../fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Medium.otf') format('opentype'),
-  url('../fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Medium.woff') format('woff');
+  font-family: 'Monument Grotesk Mono';
+  src: url('../front-ends/fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Medium.woff2') format('woff2'),
+  url('../front-ends/fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Medium.otf') format('opentype'),
+  url('../front-ends/fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Medium.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Monument Grotesk';
-  src: url('../fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Regular.woff2') format('woff2'),
-  url('../fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Regular.otf') format('opentype'),
-  url('../fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Regular.woff') format('woff');
+  font-family: 'Monument Grotesk Mono';
+  src: url('../front-ends/fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Regular.woff2') format('woff2'),
+  url('../front-ends/fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Regular.otf') format('opentype'),
+  url('../front-ends/fonts/mon-grotesk-semi-mono/ABCMonumentGroteskSemiMono-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -52,7 +52,7 @@
 
 h1, h2, h3, h4, h5, h6,
 p, span, li, ul, a {
-  font-family: "Monument Grotesk", sans-serif !important;
+  font-family: "Monument Grotesk", sans-serif;
 }
 
 :root {
@@ -104,14 +104,15 @@ hr.footer {
 }
 
 .grotesk-reg {
+  font-family: "Monument Grotesk", sans-serif;
   font-weight: normal;
   font-style: normal;
 }
 
-.grotesk-mono-reg { font-weight: 400 }
-.grotesk-mono-bold { font-weight: 700 }
-.grotesk-mono-light { font-weight: 200 }
-.grotesk-italic { font-style: italic }
+.grotesk-mono-reg { font-family: "Monument Grotesk Mono", sans-serif; font-weight: 400 }
+.grotesk-mono-bold { font-family: "Monument Grotesk Mono", sans-serif; font-weight: 700 }
+.grotesk-mono-light { font-family: "Monument Grotesk Mono", sans-serif; font-weight: 200 }
+.grotesk-italic { font-family: "Monument Grotesk", sans-serif; font-style: italic }
 
 .letters-tight { letter-spacing: -2px }
 .letters-spaced { letter-spacing: 2px }
@@ -395,6 +396,7 @@ button:focus-visible {
 .full-button {
   width: fit-content;
   transition: background .25s ease;
+  font-size:18px!important;
 }
 
 .full-button > i:before {
